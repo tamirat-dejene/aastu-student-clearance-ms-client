@@ -1,4 +1,4 @@
-package com.g3;
+package g3.scms.controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
+
 public class App extends Application {
 
     private static Scene scene;
@@ -18,12 +19,12 @@ public class App extends Application {
     @SuppressWarnings("exports")
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("/views/landing_page"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

@@ -1,10 +1,12 @@
-@SuppressWarnings("java.errors.incompleteClasspath.severity")
 module com.g3 {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires mysql.connector.j;
-    requires java.sql;
+  requires javafx.controls;
+  requires javafx.fxml;
+  requires java.sql;
+  requires mysql.connector.j;
 
-    opens com.g3 to javafx.fxml;
-    exports com.g3;
+  opens g3.scms.controllers to javafx.fxml;
+  opens g3.scms.database;
+
+  exports g3.scms.controllers;
+  exports g3.scms.database;
 }

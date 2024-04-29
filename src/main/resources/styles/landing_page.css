@@ -1,0 +1,58 @@
+/* styles.css */
+
+/* Styling for the AnchorPane */
+.anchor-pane {
+    -fx-background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 100%);
+    background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 100%);
+}
+
+/* Styling for the Labels */
+.label {
+    -fx-font-size: 16px;
+    font-size: 16px;
+    /* Font size */
+    -fx-text-fill: #333333;
+    /* Text color */
+}
+
+/* Styling for the TextField */
+.text-field {
+    -fx-font-size: 14px;
+    font-size: 14px;
+    /* Font size */
+    -fx-pref-height: 38px;
+    /* Preferred height */
+    -fx-pref-width: 200px;
+    /* Preferred width */
+}
+
+/* Styling for the ComboBox */
+.combo-box {
+    -fx-font-size: 14px;
+    font-size: 14px;
+    /* Font size */
+    -fx-pref-height: 38px;
+    /* Preferred height */
+    -fx-pref-width: 200px;
+    /* Preferred width */
+}
+
+/* Styling for the PasswordField */
+.password-field {
+    -fx-font-size: 14px;
+    font-size: 14px;
+    /* Font size */
+    -fx-pref-height: 38px;
+    /* Preferred height */
+    -fx-pref-width: 200px;
+    /* Preferred width */
+}
+
+/* Styling for the Login Label */
+#login_label {
+    -fx-font-size: 24px;
+    font-size: 24px;
+    /* Font size */
+    -fx-text-fill: #007bff;
+    /* Text color */
+}
