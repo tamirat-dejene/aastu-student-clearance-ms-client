@@ -1,22 +1,41 @@
 package g3.scms.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class LandingPageController {
 
-  @FXML
-  private Font x1;
-
-  @FXML
-  private Color x2;
-
-  @FXML
-  private Font x3;
-
-  @FXML
-  private Color x4;
+  @FXML private Button aboutUs;
+  @FXML private Button forgotPassword;
+  @FXML private TextField idNumber;
+  @FXML private AnchorPane inputFieldAnchorPane;
+  @FXML private AnchorPane landing_page;
+  @FXML private PasswordField password;
+  @FXML private Button signUp;
+  @FXML private Button submit;
   
+  @FXML void handleAboutUs(ActionEvent event) {
 
+  }
+
+  @FXML void handleForgotPassword(ActionEvent event) {
+
+  }
+
+  @FXML void handleResetPassword(KeyEvent event) {
+
+  }
+
+  @FXML void handleSignUp(ActionEvent event) {
+
+  }
+
+  @FXML void handleSubmit(ActionEvent event) {
+
+  }
 }

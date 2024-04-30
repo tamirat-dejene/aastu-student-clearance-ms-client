@@ -1,58 +1,69 @@
-/* styles.css */
-
-/* Styling for the AnchorPane */
-.anchor-pane {
-    -fx-background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 100%);
-    background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 100%);
+.root {
+    /* -fx-background-image:url("../image/aastu-logo.jpg"); */
+    -fx-background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);
+    -fx-background-blend-mode: difference;
+    -fx-background-size: cover;
+    -fx-background-position: center;
 }
 
-/* Styling for the Labels */
-.label {
-    -fx-font-size: 16px;
-    font-size: 16px;
-    /* Font size */
-    -fx-text-fill: #333333;
-    /* Text color */
+.login-label {
+    -fx-font-size: 36px;
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-text-fill: #042C54;
 }
 
-/* Styling for the TextField */
-.text-field {
+.id-label,
+.password-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c6c6c6;
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.password-field,
+.id-field {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-color: goldenrod;
+    -fx-background-color: transparent;
+
+    -fx-text-fill: white;
     -fx-font-size: 14px;
-    font-size: 14px;
-    /* Font size */
-    -fx-pref-height: 38px;
-    /* Preferred height */
-    -fx-pref-width: 200px;
-    /* Preferred width */
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Styling for the ComboBox */
-.combo-box {
-    -fx-font-size: 14px;
-    font-size: 14px;
-    /* Font size */
-    -fx-pref-height: 38px;
-    /* Preferred height */
-    -fx-pref-width: 200px;
-    /* Preferred width */
+.btn {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10 10 10 10;
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Styling for the PasswordField */
-.password-field {
-    -fx-font-size: 14px;
-    font-size: 14px;
-    /* Font size */
-    -fx-pref-height: 38px;
-    /* Preferred height */
-    -fx-pref-width: 200px;
-    /* Preferred width */
+.about-btn,
+.reset-btn {
+    -fx-background-color: transparent;
 }
 
-/* Styling for the Login Label */
-#login_label {
-    -fx-font-size: 24px;
-    font-size: 24px;
-    /* Font size */
-    -fx-text-fill: #007bff;
-    /* Text color */
+.reset-btn:hover,
+.about-btn:hover {
+    -fx-scale-y: 1.1;
+    -fx-cursor: hand;
+    -fx-transition: 1s;
+}
+
+.reset-label:focus,
+.about-btn:focus {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+
+.aastu-logo {
+    -fx-background-image: url("../image/aastu-icon.png");
+    -fx-background-radius: 40%;
+    -fx-border-radius: 40%;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-color: transparent;
+    /* -fx-border-color: black; */
+    -fx-border-width: 1px;
 }

@@ -31,6 +31,34 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.kordamp.bootstrapfx</groupId>
+            <artifactId>bootstrapfx-core</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-crypto -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-crypto</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>5.14.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.0-M1</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
     <build>
@@ -76,7 +104,7 @@
                         <link>https://openjfx.io/javadoc/20/</link>
 
                         <link>https://docs.oracle.com/javase/8/javafx/api/toc.htm</link>
-                        
+
                         <link>https://javadoc.io/doc/org.openjfx/javafx-controls/latest/index.html</link>
 
 
@@ -88,6 +116,9 @@
 
                         <!-- JUnit Javadoc -->
                         <link>https://junit.org/junit5/docs/current/api/</link>
+
+                        <!-- Apache Commons Crypto 1.2.0 API -->
+                        <link>https://commons.apache.org/proper/commons-crypto/apidocs/index.html</link>
                     </links>
                 </configuration>
             </plugin>

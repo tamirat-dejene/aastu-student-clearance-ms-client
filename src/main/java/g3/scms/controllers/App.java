@@ -4,23 +4,32 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 /**
- * JavaFX App
+ * Athor: Group 3
  */
 
 public class App extends Application {
 
     private static Scene scene;
 
-    @SuppressWarnings("exports")
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/views/landing_page"), 640, 480);
+    @SuppressWarnings("exports")
+    public void start(Stage stage) throws Exception {
+        scene = new Scene(loadFXML("/views/landing_page"), 1080, 540);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
         stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.setTitle("Student Clearance");
+        stage.getIcons().add(new Image(App.class.getResource("/image/aastu-logo.jpg").toString()));
+        
         stage.show();
     }
 
@@ -36,5 +45,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }
