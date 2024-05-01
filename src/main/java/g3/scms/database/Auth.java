@@ -1,34 +1,43 @@
 package g3.scms.database;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
-
-import java.util.Arrays;
+import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.commons.crypto.random.CryptoRandom;
-import org.apache.commons.crypto.random.CryptoRandomFactory;
+
+import g3.scms.model.College;
+import g3.scms.model.Department;
+import g3.scms.model.Student;
 
 public class Auth {
 
-  public static void main(String[] args) {
-    final byte[] key = new byte[16];
-    final byte[] iv = new byte[32];
-    final Properties properties = new Properties();
+  static void test1() {  }
 
-    properties.put(CryptoRandomFactory.CLASSES_KEY, CryptoRandomFactory.RandomProvider.OPENSSL.getClassName());
+  static void test2() {
+    Student student1 = new Student(
+        "Tamirat", "Dejenie", "Wondimu",
+        "ETS1518/14", "E", 3,
+        College.ENGINEERING, Department.SOFTWARE_ENGINEERING);
 
-    try (CryptoRandom random = CryptoRandomFactory.getCryptoRandom(properties)) {
-      System.out.println(random.getClass().getCanonicalName());
-      random.nextBytes(key);
-      random.nextBytes(iv);
-    } catch (GeneralSecurityException | IOException exception) {
-      System.out.println(exception.getMessage());
-    }
-
-    System.out.println(Arrays.toString(key));
-    System.out.println(Arrays.toString(iv));
-
+    System.out.println(student1.getCollege());
+    System.out.println(student1.getDepartment());
   }
-
+  
+  static void test3() {
+    Properties properties = new Properties();
+    try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
+      properties.load(input);
+      var iterator = properties.entrySet().iterator();
+      while (iterator.hasNext()) {
+        var curr = iterator.next();
+        System.out.println(curr.getKey() + ": "+curr.getValue());
+      }
+    } catch (IOException e) {
+  
+    }
+  }
+  
+  public static void main(String[] args) {
+  }
 }

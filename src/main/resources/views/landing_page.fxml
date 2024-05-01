@@ -56,7 +56,7 @@
                   <String fx:value="btn-success" />
                </styleClass>
             </Button>
-            <Button fx:id="signUp" layoutX="280.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleSignUp" text="Signup">
+            <Button fx:id="signUp" layoutX="231.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleSignUp" text="Create Account">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="btn-info" />
