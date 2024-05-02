@@ -17,7 +17,7 @@ public class Auth {
   static void test2() {
     Student student1 = new Student(
         "Tamirat", "Dejenie", "Wondimu",
-        "ETS1518/14", "E", 3,
+        "ETS1518/14", "tamirat.dejenie@gmail.com", "E", 3,
         College.ENGINEERING, Department.SOFTWARE_ENGINEERING);
 
     System.out.println(student1.getCollege());

@@ -41,28 +41,28 @@
 
 <AnchorPane fx:id="landing_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleResetPassword" prefHeight="540.0" prefWidth="1080.0" styleClass="anchor-pane" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.LandingPageController">
    <children>
-      <Button fx:id="aboutUs" layoutX="624.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleAboutUs" styleClass="about-btn" text="About Us" />
-      <AnchorPane layoutX="79.0" layoutY="89.0" prefHeight="362.0" prefWidth="270.0" styleClass="aastu-logo" />
-      <AnchorPane fx:id="inputFieldAnchorPane" layoutX="446.0" layoutY="88.0" prefHeight="362.0" prefWidth="394.0">
+      <Button fx:id="aboutUs" layoutX="625.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleAboutUs" styleClass="about-btn" text="About Us" />
+      <AnchorPane layoutX="48.0" layoutY="89.0" prefHeight="362.0" prefWidth="270.0" styleClass="aastu-logo" />
+      <AnchorPane fx:id="inputFieldAnchorPane" layoutX="352.0" layoutY="69.0" prefHeight="402.0" prefWidth="594.0">
          <children>
-            <Label fx:id="login_label" layoutX="10.0" layoutY="65.0" prefHeight="38.0" prefWidth="114.0" styleClass="login-label" text="Login" />
-            <Label fx:id="id_number_label" layoutX="14.0" layoutY="149.0" prefHeight="43.0" prefWidth="106.0" styleClass="id-label" text="Id number" />
-            <Label fx:id="password_label" layoutX="14.0" layoutY="211.0" prefHeight="38.0" prefWidth="106.0" styleClass="password-label" text="Password" />
-            <TextField fx:id="idNumber" alignment="CENTER" layoutX="125.0" layoutY="156.0" prefHeight="30.0" prefWidth="235.0" promptText="ETS----/--" styleClass="id-field" />
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="125.0" layoutY="215.0" prefHeight="30.0" prefWidth="235.0" promptText="*******" styleClass="password-field" />
-            <Button fx:id="submit" layoutX="280.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit">
+            <Label fx:id="login_label" layoutX="122.0" layoutY="75.0" prefHeight="38.0" prefWidth="114.0" styleClass="login-label" text="Login" />
+            <Label fx:id="id_number_label" layoutX="126.0" layoutY="159.0" prefHeight="43.0" prefWidth="106.0" styleClass="id-label" text="Id number" />
+            <Label fx:id="password_label" layoutX="126.0" layoutY="221.0" prefHeight="38.0" prefWidth="106.0" styleClass="password-label" text="Password" />
+            <TextField fx:id="idNumber" alignment="CENTER" layoutX="237.0" layoutY="166.0" prefHeight="30.0" prefWidth="235.0" promptText="ETS----/--" styleClass="id-field" />
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="237.0" layoutY="225.0" prefHeight="30.0" prefWidth="235.0" promptText="*******" styleClass="password-field" />
+            <Button fx:id="submit" layoutX="392.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="btn-success" />
                </styleClass>
             </Button>
-            <Button fx:id="signUp" layoutX="231.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleSignUp" text="Create Account">
+            <Button fx:id="signUp" layoutX="343.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSignUp" text="Create Account">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="btn-info" />
                </styleClass>
             </Button>
-            <Button fx:id="forgotPassword" layoutX="124.0" layoutY="286.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
+            <Button fx:id="forgotPassword" layoutX="236.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
          </children>
       </AnchorPane>
    </children>

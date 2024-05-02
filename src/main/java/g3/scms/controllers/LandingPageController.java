@@ -2,11 +2,14 @@ package g3.scms.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 public class LandingPageController {
 
@@ -31,11 +34,27 @@ public class LandingPageController {
 
   }
 
-  @FXML void handleSignUp(ActionEvent event) {
-
+  @FXML
+  void handleSignUp(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/signup_page.fxml"));
+        AnchorPane signUpPane = loader.load();
+        signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        
+        AnchorPane.setTopAnchor(signUpPane, 0.0);
+        AnchorPane.setBottomAnchor(signUpPane, 0.0);
+        AnchorPane.setLeftAnchor(signUpPane, 0.0);
+        AnchorPane.setRightAnchor(signUpPane, 0.0);
+        
+        inputFieldAnchorPane.getChildren().clear();
+        inputFieldAnchorPane.getChildren().add(signUpPane);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
   }
 
   @FXML void handleSubmit(ActionEvent event) {
 
   }
+
 }

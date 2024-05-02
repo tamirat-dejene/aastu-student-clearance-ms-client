@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="inputFieldAnchorPane" prefHeight="402.0" prefWidth="594.0" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="login_label" layoutX="122.0" layoutY="75.0" prefHeight="38.0" prefWidth="114.0" styleClass="login-label" text="Login" />
+      <Label fx:id="id_number_label" layoutX="126.0" layoutY="159.0" prefHeight="43.0" prefWidth="106.0" styleClass="id-label" text="Id number" />
+      <Label fx:id="password_label" layoutX="126.0" layoutY="221.0" prefHeight="38.0" prefWidth="106.0" styleClass="password-label" text="Password" />
+      <TextField fx:id="idNumber" alignment="CENTER" layoutX="237.0" layoutY="166.0" prefHeight="30.0" prefWidth="235.0" promptText="ETS----/--" styleClass="id-field" />
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="237.0" layoutY="225.0" prefHeight="30.0" prefWidth="235.0" promptText="*******" styleClass="password-field" />
+      <Button fx:id="submit" layoutX="392.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-success" />
+         </styleClass>
+      </Button>
+      <Button fx:id="signUp" layoutX="343.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSignUp" text="Create Account">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-info" />
+         </styleClass>
+      </Button>
+      <Button fx:id="forgotPassword" layoutX="236.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
+   </children>
+</AnchorPane>

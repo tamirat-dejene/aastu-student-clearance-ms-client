@@ -1,0 +1,48 @@
+Label {
+  -fx-font-size: 13px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #c6c6c6;
+  -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+TextField,
+PasswordField,
+MenuButton {
+  -fx-border-radius: 7px;
+  -fx-background-radius: 7 7 7 7;
+  -fx-border-color: goldenrod;
+  -fx-background-color: transparent;
+
+  -fx-text-fill: white;
+  -fx-font-size: 13px;
+  -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#proceedBtn:hover,
+#backToLoginBtn:hover,
+.menu-button:hover,
+.menu-item:hover {
+  -fx-cursor: hand;
+}
+
+.menu-item {
+  -fx-background-color: linear-gradient(to right, #abbaab, #ffffff);
+}
+
+
+.error-message {
+  -fx-font-size: 14px;
+  -fx-font-family: 'Courier New', Courier, monospace;
+  -fx-text-fill: #dc3545;
+}
+
+
+#backToLoginBtn {
+  -fx-background-color: #ffc107;
+  -fx-text-fill: white;
+}
+
+#proceedBtn {
+  -fx-background-color: #138496;
+  -fx-text-fill: white;
+}
