@@ -8,7 +8,6 @@ public class Student {
   private Department department;
   private Degree degree;
   private AdmissionType admissionType;
-  private String password;
 
   public Student(String firstName, String middleName, String lastName, String idNumber, String emailAddress, String section, int classYear,
       College college, Department department, Degree degree, AdmissionType admissionType) {
@@ -91,12 +90,6 @@ public class Student {
   }
   public void setAdmissionType(AdmissionType admissionType) {
     this.admissionType = admissionType;
-  }
-  public String getPassword() {
-    return password;
-  }
-  public void setPassword(String password) {
-    this.password = password;
   }
   
 }

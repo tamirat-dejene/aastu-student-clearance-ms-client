@@ -31,9 +31,9 @@ MenuButton {
 
 
 .error-message {
-  -fx-font-size: 14px;
+  -fx-font-size: 12px;
   -fx-font-family: 'Courier New', Courier, monospace;
-  -fx-text-fill: #dc3545;
+  -fx-text-fill: red;
 }
 
 

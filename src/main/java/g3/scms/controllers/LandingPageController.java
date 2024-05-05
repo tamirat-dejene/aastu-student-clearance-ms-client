@@ -10,6 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.NoSuchElementException;
+
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import g3.scms.api.RestApi;
@@ -90,49 +95,56 @@ public class LandingPageController {
     passwordError.setText("");
 
     // After validation send the request
-    try {
-      Login model = new Login();
-      model.setIdNumber(id);
-      model.setPassword(pw);
+    Login model = new Login();
+    model.setIdNumber(id);
+    model.setPassword(pw);
 
-      Request request = new Request();
-      request.setBaseUrl("http://localhost:1492/");
-      request.setPath("api/auth/login");
-      request.setJsonBody(ReqRes.makeJsonString(model));
+    Request request = new Request();
+    request.setBaseUrl("http://localhost:1492/");
+    request.setPath("api/auth/login");
+    request.setJsonBody(ReqRes.makeJsonString(model));
 
-      System.out.println(request.getJsonBody());
-
-      RestApi api = new RestApi();
-      try {
-        api.post(request, (err, res) -> {
-          if (err != null)
-            throw err;
-          if (res != null) {
-            var statusCode = res.statusCode();
-            if (statusCode != 200) {
-              Views.displayAlert(AlertType.WARNING, "Bad Request", "Something is wrong with the request",
-                  "Incorrect username/password");
-              return res;
-            }
-
-            // The user is authenticated, then!
-            var auth = res.headers().firstValue("Authentication");
-            if (auth.isPresent()) {
-              // We will save the session: everytime the client sends the request this result will be attached for the authentication
-              System.out.println(auth.get());
-            }
-          }
-          return res;
-        });
-      } catch (Error e) {
-        Views.displayAlert(AlertType.ERROR, "System Error", "Some Internal Error", e.getMessage());
-        return;
+    RestApi api = new RestApi();
+    var requestResult = api.post(request, (err, res) -> {
+      if (err != null) {
+        Views.displayAlert(AlertType.ERROR, "System Error", "Some Internal Error", err.getMessage());
+        return null;
       }
-    } catch (Exception e) {
-      Views.displayAlert(AlertType.INFORMATION, "It sad to see you go!", "Internal Error",
-          "We'll try to get back to you soon!");
-      return;
-    }
+
+      var statusCode = res.statusCode();
+      if (statusCode != 200) {
+        Views.displayAlert(AlertType.WARNING, "Bad Request", "Something is wrong with the request",
+            "Incorrect username/password");
+        return null;
+      }
+
+      // The user is authenticated, then!
+      var auth = res.headers().firstValue("Authorization");      
+      // We will save the session: everytime the client sends the request this result will be attached for the authentication
+      File authFile = new File("aastu_scms/src/main/resources/auth.bat");
+      if (!authFile.exists()) {
+        try {
+          authFile.createNewFile();
+          FileOutputStream output = new FileOutputStream(authFile);
+          output.write(auth.get().getBytes());
+          output.close();
+        } catch (IOException | NoSuchElementException e) {
+          Views.displayAlert(AlertType.WARNING, "Permission Error", "Access to file required",
+              "Please grant access to file");
+          return null;
+        }
+      }
+      
+      // Successfully logged the user in.
+      return res;
+    });
+
+    // Reuest was not succesfull
+    if(requestResult == null) return;
+
+    // Request was succesfull. We can proceed to the main functionalities
+
+
   }
 
 }

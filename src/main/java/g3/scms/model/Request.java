@@ -1,5 +1,6 @@
 package g3.scms.model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -41,6 +42,12 @@ public class Request {
 
   public void setHeaderMap(Map<String, String> headerMap) {
     this.headerMap = headerMap;
+  }
+
+  public void setHeaderMap(String name, String value) {
+    var map = new HashMap<String, String>();
+    map.put(name, value);
+    this.headerMap = map;
   }
 
   public String getJsonBody() {

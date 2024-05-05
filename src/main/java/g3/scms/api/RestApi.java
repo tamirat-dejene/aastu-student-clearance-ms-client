@@ -41,14 +41,10 @@ public class RestApi {
 
   public HttpResponse<String> get(Request request, Callback cb) {
     Builder builder;
-    try {
-      builder = request.makeBuilder();
-    } catch (Error e) {
-      throw e;
-    }
-
+    try { builder = request.makeBuilder(); } catch (Exception e) { throw e; }
+    builder.GET();
     HttpClient client = HttpClient.newHttpClient();
-    HttpResponse<String> response;
+    HttpResponse<String> response = null;
     try {
       response = client.send(builder.build(), BodyHandlers.ofString());
       return cb.next(null, response);
@@ -61,7 +57,6 @@ public class RestApi {
     
     Builder builder = HttpRequest.newBuilder();
     builder.PUT((BodyPublisher) BodyHandlers.ofString());
-
 
     return null;
   }

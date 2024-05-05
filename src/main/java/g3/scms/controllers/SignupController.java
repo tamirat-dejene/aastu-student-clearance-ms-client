@@ -7,9 +7,12 @@ import g3.scms.model.AdmissionType;
 import g3.scms.model.College;
 import g3.scms.model.Degree;
 import g3.scms.model.Department;
+import g3.scms.model.Message;
 import g3.scms.model.Request;
+import g3.scms.model.SecurePassword;
 import g3.scms.model.Student;
 import g3.scms.utils.ReqRes;
+import g3.scms.utils.Util;
 import g3.scms.utils.Validate;
 import g3.scms.utils.Views;
 
@@ -20,6 +23,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class SignupController {
@@ -146,25 +150,47 @@ public class SignupController {
       setErrorMessage(e.getMessage(), errCode);
       return;
     }
+
     // Since now we are past the validation let's begin sending the request.
     // First create the json from the Student object/model
     Student student = new Student(_fname, _mname, _lname, _id, _email, _section, Integer.parseInt(_class_year), College.toEnum(_college),
         Department.toEnum(_deprtment), Degree.toEnum(_degree), AdmissionType.toEnum(_admission));
     String json = ReqRes.makeJsonString(student);
+    
+    // Lets encrypt the user input password to put in the header request to prevent cross site scripting
+    String salt = Util.generateSalt(16);
+    SecurePassword securePassword = SecurePassword.saltAndHashPassword(salt, _pwd);
+    String passwordJson = ReqRes.makeJsonString(securePassword);
 
     // Send the user data to the server
-
     // Build the request
     Request request = new Request();
     request.setBaseUrl(g3.scms.utils.Util.getEnv().getProperty("API_BASE_URL"));
     request.setPath("api/auth/signup");
     request.setJsonBody(json);
-    // Here since the user is new we have no auth token to put in header
+    request.setHeaderMap("Password", passwordJson);
     
+    // Here since the user is new we have no auth token to put in header
     RestApi api = new RestApi();
     api.post(request, (err, resp) -> {
-      System.out.println(resp.body());
-      return null;
+      // Something is wrong with the user connection or the server
+      if (err != null) {
+        Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "The thing is", err.getMessage());
+        return null;
+      }
+
+      int responseCode = resp.statusCode();
+      var responseMessage = (Message) ReqRes.makeModelFromJson(resp.body(), Message.class);
+
+      // The user requested a bad one.
+      if (responseCode != 201) {
+        Views.displayAlert(AlertType.ERROR, "Bad Request", "The username already exists", responseMessage.getMessage());
+        return null;
+      }
+
+      // Seems succesSful operation
+      System.out.println(responseMessage.getMessage());
+      return resp;
     });
   }
 }
