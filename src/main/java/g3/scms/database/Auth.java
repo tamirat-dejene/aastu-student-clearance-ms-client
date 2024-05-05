@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
+import g3.scms.model.AdmissionType;
 import g3.scms.model.College;
+import g3.scms.model.Degree;
 import g3.scms.model.Department;
 import g3.scms.model.Student;
 
@@ -18,7 +19,7 @@ public class Auth {
     Student student1 = new Student(
         "Tamirat", "Dejenie", "Wondimu",
         "ETS1518/14", "tamirat.dejenie@gmail.com", "E", 3,
-        College.ENGINEERING, Department.SOFTWARE_ENGINEERING);
+        College.ENGINEERING, Department.SOFTWARE_ENGINEERING, Degree.UNDERGRADUATE, AdmissionType.REGULAR);
 
     System.out.println(student1.getCollege());
     System.out.println(student1.getDepartment());

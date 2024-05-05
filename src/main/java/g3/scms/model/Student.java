@@ -6,9 +6,12 @@ public class Student {
   private int classYear;
   private College college;
   private Department department;
+  private Degree degree;
+  private AdmissionType admissionType;
+  private String password;
 
   public Student(String firstName, String middleName, String lastName, String idNumber, String emailAddress, String section, int classYear,
-      College college, Department department) {
+      College college, Department department, Degree degree, AdmissionType admissionType) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -18,6 +21,8 @@ public class Student {
     this.classYear = classYear;
     this.college = college;
     this.department = department;
+    this.degree = degree;
+    this.admissionType = admissionType;
   }
 
   public String getFirstName() {
@@ -74,4 +79,24 @@ public class Student {
   public void setDepartment(Department department) {
     this.department = department;
   }
+
+  public Degree getDegree() {
+    return degree;
+  }
+  public void setDegree(Degree degree) {
+    this.degree = degree;
+  }
+  public AdmissionType getAdmissionType() {
+    return admissionType;
+  }
+  public void setAdmissionType(AdmissionType admissionType) {
+    this.admissionType = admissionType;
+  }
+  public String getPassword() {
+    return password;
+  }
+  public void setPassword(String password) {
+    this.password = password;
+  }
+  
 }

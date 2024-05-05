@@ -3,7 +3,7 @@ package g3.scms.utils;
 import com.google.gson.Gson;
 
 public class ReqRes {
-  
+
   public static String makeJsonString(Object obj) {
     Gson gson = new Gson();
     return gson.toJson(obj);
@@ -18,5 +18,5 @@ public class ReqRes {
       System.out.println(e.getMessage());
       return null;
     }
-    }
+  }
 }

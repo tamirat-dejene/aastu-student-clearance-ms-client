@@ -2,14 +2,23 @@ package g3.scms.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
+
+import g3.scms.api.RestApi;
+import g3.scms.model.Login;
+import g3.scms.model.Request;
+import g3.scms.utils.ReqRes;
+import g3.scms.utils.Validate;
+import g3.scms.utils.Views;
+
 
 public class LandingPageController {
 
@@ -17,44 +26,113 @@ public class LandingPageController {
   @FXML private Button forgotPassword;
   @FXML private TextField idNumber;
   @FXML private AnchorPane inputFieldAnchorPane;
+  @FXML private AnchorPane resetpasswordAnchorPane;
   @FXML private AnchorPane landing_page;
   @FXML private PasswordField password;
   @FXML private Button signUp;
   @FXML private Button submit;
   
+  @FXML private Label idNumberError;
+  @FXML private Label passwordError;
+
   @FXML void handleAboutUs(ActionEvent event) {
-
+    Alert alert = Views.displayAlert(AlertType.INFORMATION, "Team Innov8", "Developers",
+        "Developed by AASTU student for Advanced Programming final project");
+    alert.getDialogPane().setStyle("-fx-background-color: yellow;");
   }
 
-  @FXML void handleForgotPassword(ActionEvent event) {
-
-  }
-
-  @FXML void handleResetPassword(KeyEvent event) {
-
+  @FXML
+  void handleForgotPassword(ActionEvent event) {
+    try {
+      AnchorPane forgotPage = (AnchorPane) Views.loadFXML("/views/forgot_password_page");
+      forgotPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      Views.paintPage(forgotPage, inputFieldAnchorPane, 80, 0, 0, 0);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 
   @FXML
   void handleSignUp(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/signup_page.fxml"));
-        AnchorPane signUpPane = loader.load();
-        signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-        
-        AnchorPane.setTopAnchor(signUpPane, 0.0);
-        AnchorPane.setBottomAnchor(signUpPane, 0.0);
-        AnchorPane.setLeftAnchor(signUpPane, 0.0);
-        AnchorPane.setRightAnchor(signUpPane, 0.0);
-        
-        inputFieldAnchorPane.getChildren().clear();
-        inputFieldAnchorPane.getChildren().add(signUpPane);
+      AnchorPane signUpPane = (AnchorPane) Views.loadFXML("/views/signup_page");
+      signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      Views.paintPage(signUpPane, inputFieldAnchorPane, 0, 0, 0, 0);
     } catch (Exception e) {
-        System.out.println(e.getMessage());
+      System.out.println(e.getMessage());
     }
   }
 
-  @FXML void handleSubmit(ActionEvent event) {
+  @FXML
+  void backToHome(ActionEvent event) {
+    try {
+      AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
+      loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      
+      Views.paintPage(loginPane, (AnchorPane)resetpasswordAnchorPane.getParent(), 0, 0, 0, 0);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
 
+  @FXML
+  void handleSubmit(ActionEvent event) {
+    // Read the user input
+    String id = idNumber.getText();
+    String pw = password.getText();
+
+    // Make some input checking(validation)
+    try { Validate.idNumber(id);
+    } catch (Error e) { idNumberError.setText(e.getMessage()); return; }
+    idNumberError.setText("");
+    try { Validate.password(pw); 
+    } catch (Error e) { passwordError.setText(e.getMessage()); return; }
+    passwordError.setText("");
+
+    // After validation send the request
+    try {
+      Login model = new Login();
+      model.setIdNumber(id);
+      model.setPassword(pw);
+
+      Request request = new Request();
+      request.setBaseUrl("http://localhost:1492/");
+      request.setPath("api/auth/login");
+      request.setJsonBody(ReqRes.makeJsonString(model));
+
+      System.out.println(request.getJsonBody());
+
+      RestApi api = new RestApi();
+      try {
+        api.post(request, (err, res) -> {
+          if (err != null)
+            throw err;
+          if (res != null) {
+            var statusCode = res.statusCode();
+            if (statusCode != 200) {
+              Views.displayAlert(AlertType.WARNING, "Bad Request", "Something is wrong with the request",
+                  "Incorrect username/password");
+              return res;
+            }
+
+            // The user is authenticated, then!
+            var auth = res.headers().firstValue("Authentication");
+            if (auth.isPresent()) {
+              // We will save the session: everytime the client sends the request this result will be attached for the authentication
+              System.out.println(auth.get());
+            }
+          }
+          return res;
+        });
+      } catch (Error e) {
+        Views.displayAlert(AlertType.ERROR, "System Error", "Some Internal Error", e.getMessage());
+        return;
+      }
+    } catch (Exception e) {
+      Views.displayAlert(AlertType.INFORMATION, "It sad to see you go!", "Internal Error",
+          "We'll try to get back to you soon!");
+      return;
+    }
   }
 
 }

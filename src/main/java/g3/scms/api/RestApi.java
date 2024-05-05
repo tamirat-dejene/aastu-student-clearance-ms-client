@@ -24,22 +24,23 @@ public class RestApi {
    */
   public HttpResponse<String> post(Request request, Callback cb) {
     Builder builder;
-    try { builder = request.makeBuilder(); } catch (Error e) { throw e; }
+    try { builder = request.makeBuilder(); } catch (Exception e) { throw e; }
 
     builder.POST(BodyPublishers.ofString(request.getJsonBody()));  
 
     HttpClient client = HttpClient.newHttpClient();
-    HttpResponse<String> response;
+    HttpResponse<String> response = null;
+    Error error = null;
     try {
       response = client.send(builder.build(), BodyHandlers.ofString());
-      return cb.next(null, response);
     } catch (IOException | InterruptedException e) {
-      return cb.next(new Error(e.getMessage()), null);
+      error = new Error("The server is down! stay strong, bud!");
     }
+    return cb.next(error, response);
   }
 
   public HttpResponse<String> get(Request request, Callback cb) {
-    Builder builder = HttpRequest.newBuilder();
+    Builder builder;
     try {
       builder = request.makeBuilder();
     } catch (Error e) {

@@ -43,11 +43,15 @@ public class Validate {
         throw new Error("Invalid class year");
       return true;
     } catch (Exception e) {
-      throw new Error(e.getMessage());
+      throw new Error("Invalid class year");
     }
   }
 
   public static void main(String[] args) {
-    
+    try {
+      Validate.idNumber("ete");
+    } catch (Error e) {
+      System.out.println(e.hashCode());
+    }
   }
 }

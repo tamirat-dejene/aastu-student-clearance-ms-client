@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="inputFieldAnchorPane" prefHeight="402.0" prefWidth="594.0" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="inputFieldAnchorPane" prefHeight="402.0" prefWidth="594.0" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.LandingPageController">
    <children>
       <Label fx:id="login_label" layoutX="122.0" layoutY="75.0" prefHeight="38.0" prefWidth="114.0" styleClass="login-label" text="Login" />
       <Label fx:id="id_number_label" layoutX="126.0" layoutY="159.0" prefHeight="43.0" prefWidth="106.0" styleClass="id-label" text="Id number" />
@@ -27,5 +27,7 @@
          </styleClass>
       </Button>
       <Button fx:id="forgotPassword" layoutX="236.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
+      <Label fx:id="idNumberError" layoutX="237.0" layoutY="201.0" prefHeight="18.0" prefWidth="235.0" />
+      <Label fx:id="passwordError" layoutX="240.0" layoutY="255.0" prefHeight="18.0" prefWidth="235.0" />
    </children>
 </AnchorPane>

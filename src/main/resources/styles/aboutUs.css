@@ -1,0 +1,32 @@
+/* Custom alert dialog styles */
+.alert {
+  -fx-background-color: #f0f0f0;
+  /* Set background color */
+}
+
+.alert .header-panel {
+  -fx-background-color: #ffcccc;
+  /* Set header background color */
+}
+
+.alert .content-text {
+  -fx-font-size: 14px;
+  /* Set font size for content text */
+}
+
+.alert .button-bar {
+  -fx-spacing: 10px;
+  /* Set spacing between buttons */
+}
+
+.alert .button {
+  -fx-background-color: #0099ff;
+  /* Set button background color */
+  -fx-text-fill: white;
+  /* Set button text color */
+}
+
+.alert .button:pressed {
+  -fx-background-color: #0055cc;
+  /* Set pressed state background color */
+}

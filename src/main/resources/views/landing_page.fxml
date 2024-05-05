@@ -39,7 +39,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="landing_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleResetPassword" prefHeight="540.0" prefWidth="1080.0" styleClass="anchor-pane" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.LandingPageController">
+<AnchorPane fx:id="landing_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="1080.0" styleClass="anchor-pane" stylesheets="@../styles/landing_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.LandingPageController">
    <children>
       <Button fx:id="aboutUs" layoutX="625.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleAboutUs" styleClass="about-btn" text="About Us" />
       <AnchorPane layoutX="48.0" layoutY="89.0" prefHeight="362.0" prefWidth="270.0" styleClass="aastu-logo" />
@@ -63,6 +63,8 @@
                </styleClass>
             </Button>
             <Button fx:id="forgotPassword" layoutX="236.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
+            <Label fx:id="idNumberError" styleClass="error-message" layoutX="237.0" layoutY="201.0" prefHeight="18.0" prefWidth="235.0" />
+            <Label fx:id="passwordError" styleClass="error-message" layoutX="240.0" layoutY="259.0" prefHeight="18.0" prefWidth="235.0" />
          </children>
       </AnchorPane>
    </children>

@@ -29,13 +29,8 @@ public class Util {
 
   public static Properties getEnv() {
     Properties properties = new Properties();
-    try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
+    try (InputStream input = new FileInputStream("aastu_scms/src/main/resources/config.properties")) {
       properties.load(input);
-      // var iterator = properties.entrySet().iterator();
-      // while (iterator.hasNext()) {
-      //   var curr = iterator.next();
-      //   System.out.println(curr.getKey() + ": " + curr.getValue());
-      // }
       return properties;
     } catch (IOException e) {
       return null;

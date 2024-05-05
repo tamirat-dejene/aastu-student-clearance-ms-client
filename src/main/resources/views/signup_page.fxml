@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="signUpAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="607.0" stylesheets="@../styles/signup.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.SignupController">
+<AnchorPane fx:id="signupAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="610.0" stylesheets="@../styles/signup.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.SignupController">
    <children>
       <Label layoutX="28.0" layoutY="45.0" text="First name" />
       <Label layoutX="283.0" layoutY="46.0" prefHeight="18.0" prefWidth="91.0" text="Middle name" />
@@ -27,53 +27,53 @@
       <TextField fx:id="section" alignment="CENTER" layoutX="242.0" layoutY="225.0" prefHeight="29.0" prefWidth="54.0" />
       <MenuButton fx:id="admissionType" layoutX="264.0" layoutY="166.0" mnemonicParsing="false" popupSide="TOP" prefHeight="27.0" prefWidth="142.0" text="Admission-type">
          <items>
-            <RadioMenuItem fx:id="admissionRegular" mnemonicParsing="false" text="Regular">
+            <RadioMenuItem fx:id="admissionRegular" mnemonicParsing="false" onAction="#handleSelectedAdmissionType" text="Regular">
                <toggleGroup>
                   <ToggleGroup fx:id="admissionTypeChoice" />
                </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem fx:id="admissionCep" mnemonicParsing="false" text="CEP" toggleGroup="$admissionTypeChoice" />
+            <RadioMenuItem fx:id="admissionCep" mnemonicParsing="false" onAction="#handleSelectedAdmissionType" text="CEP" toggleGroup="$admissionTypeChoice" />
          </items>
       </MenuButton>
       <MenuButton fx:id="department" layoutX="434.0" layoutY="166.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="134.0" text="Department">
          <items>
-            <RadioMenuItem fx:id="deptArch" mnemonicParsing="false" text="Architecture">
+            <RadioMenuItem fx:id="deptArch" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Architecture">
                <toggleGroup>
                   <ToggleGroup fx:id="departmentChoice" />
                </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem fx:id="deptCeng" mnemonicParsing="false" text="Civil Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptMining" mnemonicParsing="false" text="Mining Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptChemE" mnemonicParsing="false" text="Chemical Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptEnv" mnemonicParsing="false" text="Environmental Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptEme" mnemonicParsing="false" text="Electromechanical Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptEce" mnemonicParsing="false" text="Electrical and Computer Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptMeE" mnemonicParsing="false" text="Mechanical Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptSwe" mnemonicParsing="false" text="Software Engineering" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptBio" mnemonicParsing="false" text="Biotechnology" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptGeo" mnemonicParsing="false" text="Geology" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptIc" mnemonicParsing="false" text="Industrial Chemistry" toggleGroup="$departmentChoice" />
-            <RadioMenuItem fx:id="deptFs" mnemonicParsing="false" text="Food Science and Applied Nutrition" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptCeng" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Civil Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptMining" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Mining Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptChemE" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Chemical Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptEnv" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Environmental Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptEme" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Electromechanical Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptEce" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Electrical and Computer Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptMeE" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Mechanical Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptSwe" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Software Engineering" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptBio" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Biotechnology" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptGeo" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Geology" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptIc" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Industrial Chemistry" toggleGroup="$departmentChoice" />
+            <RadioMenuItem fx:id="deptFs" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Food Science and Applied Nutrition" toggleGroup="$departmentChoice" />
          </items>
       </MenuButton>
       <MenuButton fx:id="college" layoutX="322.0" layoutY="226.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="125.0" text="College">
          <items>
-            <RadioMenuItem fx:id="colEng" mnemonicParsing="false" text="Engineering">
+            <RadioMenuItem fx:id="colEng" mnemonicParsing="false" onAction="#handleSelectedCollege" text="Engineering">
                <toggleGroup>
                   <ToggleGroup fx:id="collegeChoice" />
                </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem fx:id="colAs" mnemonicParsing="false" text="Natural and Applied Science" toggleGroup="$collegeChoice" />
+            <RadioMenuItem fx:id="colAs" mnemonicParsing="false" onAction="#handleSelectedCollege" text="Natural and Applied Science" toggleGroup="$collegeChoice" />
          </items>
       </MenuButton>
       <MenuButton fx:id="degree" layoutX="469.0" layoutY="227.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="98.0" text="Degree">
         <items>
-            <RadioMenuItem fx:id="degUnder" mnemonicParsing="false" text="Undergraduate">
+            <RadioMenuItem fx:id="degUnder" mnemonicParsing="false" onAction="#handleSelectedDegree" text="Undergraduate">
                <toggleGroup>
                   <ToggleGroup fx:id="degreeChoice" />
                </toggleGroup></RadioMenuItem>
-            <RadioMenuItem fx:id="degGrad" mnemonicParsing="false" text="Graduate" toggleGroup="$degreeChoice" />
-            <RadioMenuItem fx:id="degPost" mnemonicParsing="false" text="Postgraduate" toggleGroup="$degreeChoice" />
+            <RadioMenuItem fx:id="degGrad" mnemonicParsing="false" onAction="#handleSelectedDegree" text="Graduate" toggleGroup="$degreeChoice" />
+            <RadioMenuItem fx:id="degPost" mnemonicParsing="false" onAction="#handleSelectedDegree" text="Postgraduate" toggleGroup="$degreeChoice" />
         </items>
       </MenuButton>
       
