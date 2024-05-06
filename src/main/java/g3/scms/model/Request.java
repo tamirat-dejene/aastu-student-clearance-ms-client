@@ -69,7 +69,7 @@ public class Request {
         path = this.getPath();
       try {
         builder.uri(new URI(baseUrl + path));
-        System.out.println(baseUrl + path);
+        // System.out.println(baseUrl + path);
       } catch (URISyntaxException e) {
         throw new Error(e.getMessage());
       }

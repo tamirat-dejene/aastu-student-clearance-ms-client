@@ -62,9 +62,20 @@
             <version>2.10.1</version>
         </dependency>
 
-
-
+        <!-- https://mvnrepository.com/artifact/com.gluonhq/charm-glisten -->
+        <!-- <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm-glisten</artifactId>
+            <version>6.2.3</version>
+        </dependency> -->
     </dependencies>
+
+    <!-- <repositories>
+        <repository>
+            <id>gluon-releases</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories> -->
     <build>
         <plugins>
             <plugin>
@@ -128,4 +139,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

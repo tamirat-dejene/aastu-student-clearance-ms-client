@@ -26,7 +26,7 @@
   /* Set button text color */
 }
 
-.alert .button:pressed {
+.alert .button:focused {
   -fx-background-color: #0055cc;
   /* Set pressed state background color */
 }

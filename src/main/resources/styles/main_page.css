@@ -1,0 +1,76 @@
+.main-page {
+  -fx-background-color: linear-gradient(to right, #3a7bd5, #3a6073);
+}
+
+.left-anchor-pane,
+.right-anchor-pane {
+  -fx-background-color: beige;
+}
+
+.submit-app-btn,
+.check-status-btn,
+.notification-btn,
+.profile-menu-btn {
+  -fx-text-fill: white;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-font: bold 14pt "Arial";
+  -fx-font-size: 13px;
+}
+
+.submit-app-btn:focused,
+.check-status-btn:focused,
+.notification-btn:focused,
+.profile-menu-btn:focused {
+  -fx-border-width: 2px;
+}
+
+.submit-app-btn {
+  -fx-background-color: #17a2b8;
+  -fx-border-color: #17a2b8;
+}
+
+.submit-app-btn:hover {
+  -fx-background-color: #138496;
+  -fx-border-color: #117a8b;
+  -fx-cursor: hand;
+}
+
+.check-status-btn {
+  -fx-text-fill: #212529;
+  -fx-background-color: #ffc107;
+  -fx-border-color: #ffc107;
+}
+
+.check-status-btn:hover {
+  -fx-background-color: #e0a800;
+  -fx-border-color: #d39e00;
+  -fx-cursor: hand;
+}
+
+
+.notification-btn {
+  -fx-background-color: #007bff;
+  -fx-border-color: #007bff;
+}
+
+.notification-btn:hover {
+  -fx-background-color: #0069d9;
+  -fx-border-color: #0062cc;
+  -fx-cursor: hand;
+}
+
+.profile-menu-btn {
+  -fx-background-color: #28a745;
+  -fx-border-color: #28a745;
+}
+
+.profile-menu-btn:hover {
+  -fx-background-color: #218838;
+  -fx-border-color: #1e7e34;
+  -fx-cursor: hand;
+}
+
+.profile-menu-btn .menu-item:hover{
+  -fx-cursor: hand;
+}

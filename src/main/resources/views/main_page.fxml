@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="682.0" styleClass="main-page" stylesheets="@../styles/main_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
+   <children>
+      <Button fx:id="submitAppBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSubmitApp" styleClass="submit-app-btn" text="Submit Application" />
+      <Button fx:id="checkStatusBtn" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCheckStatusBtn" prefHeight="26.0" prefWidth="117.0" styleClass="check-status-btn" text="Check Status" />
+      <Button fx:id="notificationBtn" layoutX="475.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleNotificationBtn" styleClass="notification-btn" text="Notifcation" />
+      <MenuButton layoutX="577.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="profile-menu-btn" text="Profile" textFill="WHITE">
+        <items>
+          <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#handleChangepassword" text="Change Password" />
+          <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+        </items>
+      </MenuButton>
+      <SplitPane dividerPositions="0.68" layoutY="54.0" prefHeight="349.0" prefWidth="682.0">
+        <items>
+          <AnchorPane fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="437.0" styleClass="left-anchor-pane" />
+          <AnchorPane fx:id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="229.0" styleClass="right-anchor-pane" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
