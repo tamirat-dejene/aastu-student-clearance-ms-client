@@ -58,6 +58,11 @@ public class LandingPageController {
   }
 
   @FXML
+  void handleConfirmResetBtn(ActionEvent event) {
+    
+  }
+  
+  @FXML
   void handleSignUp(ActionEvent event) {
     try {
       AnchorPane signUpPane = (AnchorPane) Views.loadFXML("/views/signup_page");
@@ -143,7 +148,13 @@ public class LandingPageController {
     if(requestResult == null) return;
 
     // Request was succesfull. We can proceed to the main functionalities
-
+    try {
+      AnchorPane mainPage = (AnchorPane) Views.loadFXML("/views/main_page");
+      mainPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      Views.paintPage(mainPage, inputFieldAnchorPane, 0, 0, 0, 0);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
 
   }
 

@@ -1,14 +1,11 @@
 module com.g3 {
-  // requires javafx.controls;
   requires javafx.fxml;
   requires java.sql;
-  // requires commons.crypto;
-  // requires mysql.connector.j;
   requires org.apache.commons.codec;
   requires org.kordamp.bootstrapfx.core;
   
-  requires java.net.http;
   requires com.google.gson;
+  requires transitive java.net.http;
   requires transitive javafx.graphics;
   requires transitive javafx.controls;
 

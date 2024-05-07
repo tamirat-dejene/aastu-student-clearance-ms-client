@@ -46,3 +46,4 @@ dependency-reduced-pom.xml
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+auth.bat

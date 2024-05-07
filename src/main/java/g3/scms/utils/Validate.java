@@ -47,11 +47,18 @@ public class Validate {
     }
   }
 
+  public static boolean appNumber(String appNumber) {
+    var isValid = Pattern.compile("^(AASTUSCMS-){1}[0-9]{1,}").matcher(appNumber).matches();
+    if(isValid) return true;
+    throw new Error("Invalid application number!");
+  }
+
   public static void main(String[] args) {
     try {
-      Validate.idNumber("ete");
+      Validate.appNumber("AASTUSCMS-29");
+      System.out.println("Valid app number");
     } catch (Error e) {
-      System.out.println(e.hashCode());
+      System.out.println(e.getMessage());
     }
   }
 }

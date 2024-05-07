@@ -47,7 +47,8 @@ public class Request {
   public void setHeaderMap(String name, String value) {
     var map = new HashMap<String, String>();
     map.put(name, value);
-    this.headerMap = map;
+    if(this.headerMap == null) this.headerMap = map;
+    else this.headerMap.put(name, value);
   }
 
   public String getJsonBody() {
@@ -58,10 +59,8 @@ public class Request {
     this.jsonBody = json;
   }
 
-  @SuppressWarnings("exports")
   public Builder makeBuilder() {
     var builder = HttpRequest.newBuilder();
-
     String baseUrl = this.getBaseUrl();
     String path = "";
     if (baseUrl != null) {
@@ -69,7 +68,6 @@ public class Request {
         path = this.getPath();
       try {
         builder.uri(new URI(baseUrl + path));
-        // System.out.println(baseUrl + path);
       } catch (URISyntaxException e) {
         throw new Error(e.getMessage());
       }

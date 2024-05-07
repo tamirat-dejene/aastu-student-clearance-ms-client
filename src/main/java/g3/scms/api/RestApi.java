@@ -25,15 +25,18 @@ public class RestApi {
   public HttpResponse<String> post(Request request, Callback cb) {
     Builder builder;
     try { builder = request.makeBuilder(); } catch (Exception e) { throw e; }
-
     builder.POST(BodyPublishers.ofString(request.getJsonBody()));  
 
     HttpClient client = HttpClient.newHttpClient();
     HttpResponse<String> response = null;
     Error error = null;
     try {
-      response = client.send(builder.build(), BodyHandlers.ofString());
-    } catch (IOException | InterruptedException e) {
+      HttpRequest httpRequest = builder.build();
+      response = client.send(httpRequest, BodyHandlers.ofString());
+    } catch (IOException | InterruptedException | IllegalStateException e) {
+      System.out.println(e.getClass());
+      System.out.println(e.getMessage());
+      e.printStackTrace();
       error = new Error("The server is down! stay strong, bud!");
     }
     return cb.next(error, response);

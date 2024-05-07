@@ -1,13 +1,13 @@
 package g3.scms.controllers;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import g3.scms.api.RestApi;
 import g3.scms.model.Request;
+import g3.scms.utils.ReqRes;
 import g3.scms.utils.Views;
 
 import javafx.application.Application;
@@ -31,7 +31,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         AnchorPane homePane = (AnchorPane) Views.loadFXML("/views/landing_page");
-
         // Check if the user has saved login token
         // If yes we don't wanna show the login page else we proceed to the login page
 
@@ -71,12 +70,7 @@ public class App extends Application {
 
     private static boolean checkSessionValidity(File sessionFile) throws IOException {
         // Read the session token
-        FileInputStream input = new FileInputStream(sessionFile);
-        String token = "";
-        var temp = 0;
-        while ((temp = input.read()) != -1)
-            token += (char) temp;
-        input.close();
+        String token = ReqRes.getAuthenticationString(sessionFile);
 
         // Build the request adding the authorization header
         Request request = new Request();
