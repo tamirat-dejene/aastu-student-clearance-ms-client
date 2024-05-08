@@ -37,7 +37,7 @@ public class ReqRes {
   }
 
   public static String getAuthenticationString() throws IOException {
-    File file = new File("aastu_scms/src/main/resources/auth.bat");
+    File file = new File("src/main/resources/auth.bat");
     return ReqRes.getAuthenticationString(file);
   }
 
