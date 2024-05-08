@@ -19,6 +19,9 @@ public class Views {
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     
+    // Style the dialog pane
+    alert.getDialogPane().setStyle("-fx-background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);");
+    alert.getDialogPane().getStylesheets().add("s");
     alert.showAndWait();
     return alert;
   }

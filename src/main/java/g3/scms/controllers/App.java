@@ -38,8 +38,9 @@ public class App extends Application {
         if (file.exists()) {
             // check if the token is not tampered with by sending the login request using
             // the saved token
+            String token = ReqRes.getAuthenticationString(file);
             try {
-                boolean isValidSession = App.checkSessionValidity(file);
+                boolean isValidSession = App.checkSessionValidity(token);
                 if (isValidSession) {
                     // Load the main functionality page
                     AnchorPane mainPane = (AnchorPane) Views.loadFXML("/views/main_page");
@@ -68,10 +69,7 @@ public class App extends Application {
         stage.show();
     }
 
-    private static boolean checkSessionValidity(File sessionFile) throws IOException {
-        // Read the session token
-        String token = ReqRes.getAuthenticationString(sessionFile);
-
+    private static boolean checkSessionValidity(String token) throws IOException {
         // Build the request adding the authorization header
         Request request = new Request();
         request.setBaseUrl("http://localhost:1492/");

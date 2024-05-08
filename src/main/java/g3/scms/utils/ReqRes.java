@@ -3,6 +3,7 @@ package g3.scms.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import com.google.gson.Gson;
 
@@ -24,22 +25,28 @@ public class ReqRes {
     }
   }
 
-  public static String getAuthenticationString() throws IOException {
-    FileInputStream input = new FileInputStream("aastu_scms/src/main/resources/auth.bat");
-    String token = "";
-    var temp = 0;
+  public static String getAuthenticationString(File file) throws IOException {
+    FileInputStream input = new FileInputStream(file);
+    StringBuilder tokenBuilder = new StringBuilder();
+    int temp;
     while ((temp = input.read()) != -1)
-      token += (char) temp;
+      tokenBuilder.append((char) temp);
+
     input.close();
-    return token;
+    return tokenBuilder.toString();
   }
-  public static String getAuthenticationString(File sessionFile) throws IOException {
-    FileInputStream input = new FileInputStream(sessionFile);
-    String token = "";
-    var temp = 0;
-    while ((temp = input.read()) != -1)
-      token += (char) temp;
-    input.close();
-    return token;
+
+  public static String getAuthenticationString() throws IOException {
+    File file = new File("aastu_scms/src/main/resources/auth.bat");
+    // System.out.println(System.getProperty("user.dir"));
+    return ReqRes.getAuthenticationString(file);
+  }
+
+  public static void main(String[] args) throws URISyntaxException {
+    try {
+      System.out.println(ReqRes.getAuthenticationString());
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
   }
 }
