@@ -1,4 +1,4 @@
-package g3.scms.api;
+package g3.scms.model;
 
 // Corresponds to the re request body Transcript
 

@@ -36,8 +36,7 @@ public class App extends Application {
 
         File file = new File("aastu_scms/src/main/resources/auth.bat");
         if (file.exists()) {
-            // check if the token is not tampered with by sending the login request using
-            // the saved token
+            // check if the token is not tampered with by sending the login request using the saved token
             String token = ReqRes.getAuthenticationString(file);
             try {
                 boolean isValidSession = App.checkSessionValidity(token);

@@ -15,7 +15,6 @@ module com.g3 {
   opens g3.scms.utils to com.google.gson, javafx.fxml;
 
   exports g3.scms.controllers;
-  exports g3.scms.database;
   exports g3.scms.model;
   exports g3.scms.utils;
   exports g3.scms.api;

@@ -11,6 +11,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.HashMap;
 
 import g3.scms.model.Request;
+import g3.scms.model.Transcript;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 
@@ -57,7 +58,6 @@ public class RestApi {
   }
 
   public HttpResponse<String> put() {
-    
     Builder builder = HttpRequest.newBuilder();
     builder.PUT((BodyPublisher) BodyHandlers.ofString());
 
