@@ -34,7 +34,7 @@ public class App extends Application {
         // Check if the user has saved login token
         // If yes we don't wanna show the login page else we proceed to the login page
 
-        File file = new File("src/main/resources/auth.bat");
+        File file = new File("aastu_scms/src/main/resources/auth.bat");
         if (file.exists()) {
             // check if the token is not tampered with by sending the login request using the saved token
             String token = ReqRes.getAuthenticationString(file);
