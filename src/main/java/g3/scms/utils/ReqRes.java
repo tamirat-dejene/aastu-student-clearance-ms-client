@@ -3,7 +3,7 @@ package g3.scms.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
+// import java.io.InputStream;
 
 import com.google.gson.Gson;
 
@@ -37,15 +37,14 @@ public class ReqRes {
   }
 
   public static String getAuthenticationString() throws IOException {
+    // InputStream input = ClassLoader.getSystemResourceAsStream("auth.bat");
+    // return new String(input.readAllBytes());
     File file = new File("aastu_scms/src/main/resources/auth.bat");
     return ReqRes.getAuthenticationString(file);
   }
 
-  public static void main(String[] args) throws URISyntaxException {
-    try {
-      System.out.println(ReqRes.getAuthenticationString());
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
+
+  public static void main(String[] args) throws IOException {
+    System.out.println(ReqRes.getAuthenticationString());
   }
 }

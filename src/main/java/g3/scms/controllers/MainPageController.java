@@ -28,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class MainPageController {
   // Main controllers
+  @FXML private AnchorPane mainPageAnchorPane;
   @FXML private MenuItem changePassword;
   @FXML private Button checkStatusBtn;
   @FXML private AnchorPane leftAnchorPane;
@@ -182,9 +183,8 @@ public class MainPageController {
     
   
     // load the login page
-    AnchorPane parentPane = (AnchorPane) rightAnchorPane.getParent();
     AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
-    Views.paintPage(loginPane, parentPane, 0, 0, 0, 0);
+    Views.paintPage(loginPane, mainPageAnchorPane, 0, 0, 0, 0);
   }
 
   @FXML

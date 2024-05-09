@@ -6,7 +6,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="682.0" styleClass="main-page" stylesheets="@../styles/main_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
+<AnchorPane fx:id="mainPageAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="682.0" styleClass="main-page" stylesheets="@../styles/main_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
    <children>
       <Button fx:id="submitAppBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSubmitApp" styleClass="submit-app-btn" text="Submit Application" />
       <Button fx:id="checkStatusBtn" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCheckStatusBtn" prefHeight="26.0" prefWidth="117.0" styleClass="check-status-btn" text="Check Status" />

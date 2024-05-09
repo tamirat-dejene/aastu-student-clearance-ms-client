@@ -3,7 +3,6 @@ package g3.scms.api;
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
@@ -57,11 +56,24 @@ public class RestApi {
     }
   }
 
-  public HttpResponse<String> put() {
+  public HttpResponse<String> put(Request request, Callback cb) {
     Builder builder = HttpRequest.newBuilder();
-    builder.PUT((BodyPublisher) BodyHandlers.ofString());
+    try { builder = request.makeBuilder(); } catch (Exception e) { throw e; }
+    builder.PUT(BodyPublishers.ofString(request.getJsonBody()));
 
-    return null;
+    HttpClient client = HttpClient.newHttpClient();
+    HttpResponse<String> response = null;
+    Error error = null;
+    try {
+      HttpRequest httpRequest = builder.build();
+      response = client.send(httpRequest, BodyHandlers.ofString());
+    } catch (IOException | InterruptedException | IllegalStateException e) {
+      System.out.println(e.getClass());
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+      error = new Error("The server is down! stay strong, bud!");
+    }
+    return cb.next(error, response);
   }
 
   public static void testPostGet() {
