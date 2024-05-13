@@ -2,7 +2,7 @@ package g3.scms.controllers;
 
 import java.io.IOException;
 
-import g3.scms.api.RestApi;
+import g3.scms.api.Api;
 import g3.scms.model.Message;
 import g3.scms.model.Request;
 import g3.scms.model.UpdatePassword;
@@ -67,7 +67,7 @@ public class AccountController {
     } catch (IOException e) { }
     
     // Send put request
-    RestApi api = new RestApi();
+    Api api = new Api();
     api.put(request, (error, response) -> {
       if (error != null) {
         Views.displayAlert(AlertType.ERROR, "Server is down", null, error.getMessage());

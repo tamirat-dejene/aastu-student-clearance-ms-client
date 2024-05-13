@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-import g3.scms.api.RestApi;
+import g3.scms.api.Api;
 import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Views;
@@ -76,7 +76,7 @@ public class App extends Application {
         request.setHeaderMap("Authorization", token);
 
         // Send get request to the api
-        RestApi api = new RestApi();
+        Api api = new Api();
         var response = api.get(request, (err, res) -> {
             if (err != null)
                 return null;

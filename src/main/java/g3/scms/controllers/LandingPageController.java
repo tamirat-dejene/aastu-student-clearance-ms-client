@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-import g3.scms.api.RestApi;
+import g3.scms.api.Api;
 import g3.scms.model.Login;
 import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
@@ -109,7 +109,7 @@ public class LandingPageController {
     request.setPath("api/auth/login");
     request.setJsonBody(ReqRes.makeJsonString(model));
 
-    RestApi api = new RestApi();
+    Api api = new Api();
     var requestResult = api.post(request, (err, res) -> {
       if (err != null) {
         Views.displayAlert(AlertType.ERROR, "System Error", "Some Internal Error", err.getMessage());

@@ -14,7 +14,7 @@ import g3.scms.model.Transcript;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 
-public class RestApi {
+public class Api {
 
   /**
    * 
@@ -77,7 +77,7 @@ public class RestApi {
   }
 
   public static void testPostGet() {
-    var api = new RestApi();
+    var api = new Api();
     var headers = new HashMap<String, String>();
 
     headers.put("Authorization", Util.getEnv().getProperty("API_AUTH_KEY"));
@@ -120,6 +120,6 @@ public class RestApi {
   }
 
   public static void main(String[] args) throws Exception {
-    // testPostGet();
+     testPostGet();
   }
 }

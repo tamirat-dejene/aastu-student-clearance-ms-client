@@ -2,7 +2,7 @@ package g3.scms.controllers;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-import g3.scms.api.RestApi;
+import g3.scms.api.Api;
 import g3.scms.model.AdmissionType;
 import g3.scms.model.College;
 import g3.scms.model.Degree;
@@ -171,7 +171,7 @@ public class SignupController {
     request.setHeaderMap("Password", passwordJson);
     
     // Here since the user is new we have no auth token to put in header
-    RestApi api = new RestApi();
+    Api api = new Api();
     api.post(request, (err, resp) -> {
       // Something is wrong with the user connection or the server
       if (err != null) {

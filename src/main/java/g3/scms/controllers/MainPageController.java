@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
-import g3.scms.api.RestApi;
+import g3.scms.api.Api;
 import g3.scms.model.ClearanceReason;
 import g3.scms.model.Message;
 import g3.scms.model.Request;
@@ -79,7 +79,7 @@ public class MainPageController {
     request.setPath("api/clearance/?applicationNumber=" + applicationNumber);
 
     // Send the request
-    RestApi api = new RestApi();
+    Api api = new Api();
     api.get(request, (error, response) -> {
       if (error != null) {
         Views.displayAlert(AlertType.ERROR, "Something went wrong", "", error.getMessage());
@@ -136,7 +136,7 @@ public class MainPageController {
     request.setJsonBody(json);
 
     // Now we are ready to send the request using post client api
-    RestApi api = new RestApi();
+    Api api = new Api();
     api.post(request, (error, response) -> {
       if (error != null) {
         // The server is down or connection error
