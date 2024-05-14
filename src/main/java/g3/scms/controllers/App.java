@@ -5,9 +5,11 @@ import java.io.IOException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
+
 import g3.scms.api.Api;
 import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
+import g3.scms.utils.Util;
 import g3.scms.utils.Views;
 
 import javafx.application.Application;
@@ -71,7 +73,7 @@ public class App extends Application {
     private static boolean checkSessionValidity(String token) throws IOException {
         // Build the request adding the authorization header
         Request request = new Request();
-        request.setBaseUrl("http://localhost:1492/");
+        request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
         request.setPath("api/auth/login");
         request.setHeaderMap("Authorization", token);
 

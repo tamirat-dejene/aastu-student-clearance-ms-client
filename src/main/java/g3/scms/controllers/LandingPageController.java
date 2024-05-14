@@ -159,7 +159,7 @@ public class LandingPageController {
     model.setPassword(pw);
 
     Request request = new Request();
-    request.setBaseUrl("http://localhost:1492/");
+    request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
     request.setPath("api/auth/login");
     request.setJsonBody(ReqRes.makeJsonString(model));
 
