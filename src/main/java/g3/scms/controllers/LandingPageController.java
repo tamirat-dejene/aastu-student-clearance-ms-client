@@ -19,8 +19,10 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 
 import g3.scms.api.Api;
 import g3.scms.model.Login;
+import g3.scms.model.Message;
 import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
+import g3.scms.utils.Util;
 import g3.scms.utils.Validate;
 import g3.scms.utils.Views;
 
@@ -30,6 +32,7 @@ public class LandingPageController {
   @FXML private Button aboutUs;
   @FXML private Button forgotPassword;
   @FXML private TextField idNumber;
+  @FXML private TextField emailAddress;
   @FXML private AnchorPane inputFieldAnchorPane;
   @FXML private AnchorPane resetpasswordAnchorPane;
   @FXML private AnchorPane landing_page;
@@ -39,6 +42,7 @@ public class LandingPageController {
   
   @FXML private Label idNumberError;
   @FXML private Label passwordError;
+  @FXML private Label resetPageInputError;
 
   @FXML void handleAboutUs(ActionEvent event) {
     Alert alert = Views.displayAlert(AlertType.INFORMATION, "Team Innov8", "Developers",
@@ -51,7 +55,7 @@ public class LandingPageController {
     try {
       AnchorPane forgotPage = (AnchorPane) Views.loadFXML("/views/forgot_password_page");
       forgotPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-      Views.paintPage(forgotPage, inputFieldAnchorPane, 80, 0, 0, 0);
+      Views.paintPage(forgotPage, inputFieldAnchorPane, 50, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -59,7 +63,57 @@ public class LandingPageController {
 
   @FXML
   void handleConfirmResetBtn(ActionEvent event) {
+    System.out.println(event.getSource());
+    String emailInput = emailAddress.getText();
+    String idNumberInput = idNumber.getText();
+    try {
+      Validate.email(emailInput);
+      Validate.idNumber(idNumberInput);
+    } catch (Error e) {
+      resetPageInputError.setText(e.getMessage());
+      return;
+    }
+    resetPageInputError.setText("");
     
+    // prepare email json
+    Message message = new Message();
+    message.setMessage(emailInput);
+    String emailJson = ReqRes.makeJsonString(message);
+
+    // Prepare the request to be sent
+    Request request = new Request();
+    request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
+    request.setPath("api/account/resetpw");
+    request.setHeaderMap("Authorization", idNumberInput);
+    request.setJsonBody(emailJson);
+
+    // PUT the request
+    Api api = new Api();
+    var response = api.put(request, (err, res) -> {
+      if (err != null) {
+        Views.displayAlert(AlertType.ERROR, "System Error", "Can't reach the server!", err.getMessage());
+        return null;
+      }
+
+      // If the request is accepted/status code 202
+      if(res != null && res.statusCode() == 202) return res;
+      
+      // Request not accepted or server error
+      Message respMessage = (Message) ReqRes.makeModelFromJson(res.body(), Message.class);
+      switch (res.statusCode()) {
+        case 400:
+          Views.displayAlert(AlertType.ERROR, "Bad request", "", respMessage.getMessage()); 
+          break;
+        case 500:
+        default:
+          Views.displayAlert(AlertType.ERROR, "Server error", "", respMessage.getMessage()); 
+          break;
+      }
+      return null;
+    });
+    
+    if(response == null) return;
+    System.out.println("Success: " + response.body());
   }
   
   @FXML
