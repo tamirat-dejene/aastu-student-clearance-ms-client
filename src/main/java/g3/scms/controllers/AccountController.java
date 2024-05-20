@@ -70,7 +70,7 @@ public class AccountController {
     Api api = new Api();
     api.put(request, (error, response) -> {
       if (error != null) {
-        Views.displayAlert(AlertType.ERROR, "Server is down", null, error.getMessage());
+        Views.displayAlert(AlertType.ERROR, "Server can't be reached", null, error.getMessage());
         return null;
       }
 

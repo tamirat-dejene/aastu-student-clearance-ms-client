@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-
 import g3.scms.api.Api;
 import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
@@ -26,8 +25,14 @@ import javafx.stage.Stage;
 public class App extends Application {
     private static Scene scene;
 
+    /**
+     * Application entry point
+     * @param args
+     */
     public static void main(String[] args) {
-        try { launch(); } catch (Exception e) { }
+        try {
+            launch();
+        } catch (Exception e) { System.out.println(e.getMessage()); }
     }
 
     @Override
@@ -38,11 +43,12 @@ public class App extends Application {
 
         File file = new File("aastu_scms/src/main/resources/auth.bat");
         if (file.exists()) {
-            // check if the token is not tampered with by sending the login request using the saved token
+            // check if the token is not tampered with by sending the login request using
+            // the saved token
             String token = ReqRes.getAuthenticationString(file);
             try {
-                boolean isValidSession = App.checkSessionValidity(token);
-                if (isValidSession) {
+                boolean isValidToken = App.checkSessionValidity(token);
+                if (isValidToken) {
                     // Load the main functionality page
                     AnchorPane mainPane = (AnchorPane) Views.loadFXML("/views/main_page");
                     AnchorPane inputField = (AnchorPane) homePane.getChildren()
@@ -70,7 +76,14 @@ public class App extends Application {
         stage.show();
     }
 
-    private static boolean checkSessionValidity(String token) throws IOException {
+    /**
+     * 
+     * @param token checks the token validity by sending the request to the server
+     *              by seting Authorization header in the header request
+     * @return true if the token is valid, false otherwise
+     */
+
+    private static boolean checkSessionValidity(String token) {
         // Build the request adding the authorization header
         Request request = new Request();
         request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
@@ -85,9 +98,12 @@ public class App extends Application {
             return res;
         });
 
-        if (response == null)  throw new Error("The server is down!");
-        if (response.statusCode() == 200) return true;
-        if (response.statusCode() == 401) return false;
+        if (response == null)
+            throw new Error("The server is down!");
+        if (response.statusCode() == 200)
+            return true;
+        if (response.statusCode() == 401)
+            return false;
         return false;
     }
 }

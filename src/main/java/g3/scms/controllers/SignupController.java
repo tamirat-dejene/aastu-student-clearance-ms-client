@@ -1,6 +1,6 @@
 package g3.scms.controllers;
 
-import org.kordamp.bootstrapfx.BootstrapFX;
+// import org.kordamp.bootstrapfx.BootstrapFX;
 
 import g3.scms.api.Api;
 import g3.scms.model.AdmissionType;
@@ -54,6 +54,33 @@ public class SignupController {
   @FXML private Label middleNameError;
   @FXML private Label passwordError;
   @FXML private Label sectionError;
+  private static RadioMenuItem selectedCollege = null;
+  private static RadioMenuItem selectedDepartment = null;
+  private static RadioMenuItem selectedDegree = null;
+  private static RadioMenuItem selectedAdmissionType = null;
+
+   private void setErrorMessage(String message, int errCode) {
+    switch (errCode) {
+      case 1: firstNameError.setText(message); break;
+      case 2: middleNameError.setText(message); break;
+      case 3: lastNameError.setText(message); break;
+      case 4: emailError.setText(message); break;
+      case 5: idNumberError.setText(message); break;
+      case 6: classYearError.setText(message); break;
+      case 7: sectionError.setText(message); break;
+      case 8: admissionTypeError.setText(message); break;
+      case 9: departmentError.setText(message); break;
+      case 10: collegeError.setText(message); break;
+      case 11: degreeError.setText(message); break;
+      case 12: passwordError.setText(message); break;
+      default:
+        break;
+    }
+  }
+  
+  private void remove(Label label) {
+    label.setText("");
+  }
   
   @FXML void handleSelectedAdmissionType(ActionEvent event) {
     selectedAdmissionType = (RadioMenuItem) event.getSource();
@@ -75,48 +102,19 @@ public class SignupController {
     department.setText(selectedDepartment.getText());
   }
   
-  private static RadioMenuItem selectedCollege = null;
-  private static RadioMenuItem selectedDepartment = null;
-  private static RadioMenuItem selectedDegree = null;
-  private static RadioMenuItem selectedAdmissionType = null;
-
-  private void setErrorMessage(String message, int errCode) {
-    switch (errCode) {
-      case 1: firstNameError.setText(message); break;
-      case 2: middleNameError.setText(message); break;
-      case 3: lastNameError.setText(message); break;
-      case 4: emailError.setText(message); break;
-      case 5: idNumberError.setText(message); break;
-      case 6: classYearError.setText(message); break;
-      case 7: sectionError.setText(message); break;
-      case 8: passwordError.setText(message); break;
-      case 9: collegeError.setText(message); break;
-      case 10: departmentError.setText(message); break;
-      case 11: degreeError.setText(message); break;
-      case 12: admissionTypeError.setText(message); break;
-      default:
-        break;
-    }
-  }
-  
-  private void remove(Label label) {
-    label.setText("");
-  }
-  
   @FXML void handleBackToLoginBtn(ActionEvent event) {
     try {
         AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
-        loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-        AnchorPane inputFieldAnchorPane = (AnchorPane) signupAnchorPane.getParent();
+        // loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        AnchorPane parentPane = (AnchorPane) signupAnchorPane.getParent();
 
-        Views.paintPage(loginPane, inputFieldAnchorPane, 0, 0, 0, 0);
+        Views.paintPage(loginPane, parentPane, 0, 0, 0, 0);
     } catch (Exception e) {
         System.out.println(e.getMessage());
     }
   }
 
-  @FXML
-  void handleProceedBtn(ActionEvent event) {
+  @FXML void handleProceedBtn(ActionEvent event) {
     // Lets collect validate the grabbed data
     var _fname = firstName.getText();
     var _mname = middleName.getText();
@@ -141,11 +139,11 @@ public class SignupController {
       Validate.idNumber(_id); remove(idNumberError); ++errCode;
       Validate.classYear(_class_year); remove(classYearError); ++errCode;
       Validate.section(_section); remove(sectionError); ++errCode;
-      Validate.password(_pwd); remove(passwordError); ++errCode;
-      if(_college == null) throw new Error("Pick a college"); remove(collegeError); ++errCode;
-      if(_deprtment == null) throw new Error("Pick a deprtment"); remove(departmentError); ++errCode;
-      if(_degree == null) throw new Error("Pick a degree"); remove(degreeError); ++errCode;
       if(_admission == null) throw new Error("Pick an admission type"); remove(admissionTypeError); ++errCode;
+      if(_deprtment == null) throw new Error("Pick a deprtment"); remove(departmentError); ++errCode;
+      if(_college == null) throw new Error("Pick a college"); remove(collegeError); ++errCode;
+      if(_degree == null) throw new Error("Pick a degree"); remove(degreeError); ++errCode;
+      Validate.password(_pwd); remove(passwordError); ++errCode;
     } catch (Error e) {
       setErrorMessage(e.getMessage(), errCode);
       return;
@@ -172,7 +170,7 @@ public class SignupController {
     
     // Here since the user is new we have no auth token to put in header
     Api api = new Api();
-    api.post(request, (err, resp) -> {
+    var response = api.post(request, (err, resp) -> {
       // Something is wrong with the user connection or the server
       if (err != null) {
         Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "The thing is", err.getMessage());
@@ -184,13 +182,18 @@ public class SignupController {
 
       // The user requested a bad one.
       if (responseCode != 201) {
-        Views.displayAlert(AlertType.ERROR, "Bad Request", "The username already exists", responseMessage.getMessage());
+        Views.displayAlert(AlertType.ERROR, "Bad Request", "The user is already registered", responseMessage.getMessage());
         return null;
       }
 
-      // Seems succesSful operation
-      System.out.println(responseMessage.getMessage());
+      // Seems succesSful operation, back to the login
       return resp;
     });
+
+    if (response != null) {
+      // Show the success message
+      Views.displayAlert(AlertType.INFORMATION, "Successfully Signedup", "You can now login", response.body());
+      handleBackToLoginBtn(new ActionEvent());
+    }
   }
 }

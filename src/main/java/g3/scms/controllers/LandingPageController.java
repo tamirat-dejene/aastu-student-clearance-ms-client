@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.NoSuchElementException;
 
 import org.kordamp.bootstrapfx.BootstrapFX;
@@ -21,30 +23,119 @@ import g3.scms.api.Api;
 import g3.scms.model.Login;
 import g3.scms.model.Message;
 import g3.scms.model.Request;
+import g3.scms.model.SecurePassword;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 import g3.scms.utils.Validate;
 import g3.scms.utils.Views;
 
-
 public class LandingPageController {
 
+  @FXML private AnchorPane inputFieldAnchorPane;
+  @FXML private AnchorPane resetpasswordAnchorPane;
+  @FXML private AnchorPane otpAnchorPane;
+  @FXML private AnchorPane newPwdAnchorPane;
+  @FXML private AnchorPane landing_page;
   @FXML private Button aboutUs;
+  @FXML private Button signUp;
+  @FXML private Button submit;
   @FXML private Button forgotPassword;
   @FXML private TextField idNumber;
   @FXML private TextField emailAddress;
-  @FXML private AnchorPane inputFieldAnchorPane;
-  @FXML private AnchorPane resetpasswordAnchorPane;
-  @FXML private AnchorPane landing_page;
   @FXML private PasswordField password;
-  @FXML private Button signUp;
-  @FXML private Button submit;
-  
+
   @FXML private Label idNumberError;
   @FXML private Label passwordError;
   @FXML private Label resetPageInputError;
+  
+  @FXML private Button confirmOtpBtn;
+  @FXML private TextField otpTextField;
+  @FXML private PasswordField newPwd;
 
-  @FXML void handleAboutUs(ActionEvent event) {
+  @FXML
+  void handleConfirmNewPwdBtn(ActionEvent event) {
+    String newPassword = newPwd.getText();
+    try {
+      Validate.password(newPassword);
+    } catch (Error e) {
+      Views.displayAlert(AlertType.ERROR, "Invalid input", "", e.getMessage());
+      return;
+    }
+
+    SecurePassword securePassword = SecurePassword.saltAndHashPassword(Util.generateSalt(16), newPassword);
+    String newPwdJson = "";
+    try {
+      newPwdJson = URLEncoder.encode("{\"hashedPassword\":\"" + securePassword.getHashedPassword() + "\"}", "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      return;
+    }
+    Request request = new Request();
+    request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
+    request.setPath("api/account/resetpw/?newpwd=" + newPwdJson);
+    
+    Api api = new Api();
+    api.get(request, (error, response) -> {
+      if (error != null) {
+        Views.displayAlert(AlertType.ERROR, "System/Connection Error", "", error.getMessage());
+        return null;
+      }
+
+      // http conflict
+      Message message = (Message) ReqRes.makeModelFromJson(response.body(), Message.class);
+      if (response != null && response.statusCode() == 500) {
+        Views.displayAlert(AlertType.ERROR, "Something went wrong", "", message.getMessage());
+        return null;
+      }
+
+      // Valid
+      Views.displayAlert(AlertType.INFORMATION, "Successfull", "Now you can login", message.getMessage());
+      AnchorPane loginPane;
+      try {
+        loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
+        Views.paintPage(loginPane, (AnchorPane) newPwdAnchorPane.getParent(), 0, 0, 0, 0);
+      } catch (IOException e) { }
+      return response;
+    });
+  }
+
+  @FXML
+  void handleConfrimOtp(ActionEvent event) {
+    String inputOtp = otpTextField.getText();
+    Request request = new Request();
+    request.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
+    request.setPath("api/account/resetpw/?otp=" + inputOtp);
+
+    Api api = new Api();
+    var resp = api.get(request, (error, response) -> {
+      if (error != null) {
+        Views.displayAlert(AlertType.ERROR, "System/Connection Error", "", error.getMessage());
+        return null;
+      }
+
+      // http conflict
+      Message message = (Message) ReqRes.makeModelFromJson(response.body(), Message.class);
+      if (response != null && response.statusCode() == 409) {
+        Views.displayAlert(AlertType.ERROR, "Incorrect OTP", "Try again later", message.getMessage());
+        return null;
+      }
+
+      // Valid
+      return response;
+    });
+
+    if (resp == null) return;
+    
+    // Load the newpwd page
+    try {
+      AnchorPane newpwdPane = (AnchorPane) Views.loadFXML("/views/otp/new_pwd_page");
+      Views.paintPage(newpwdPane, (AnchorPane) otpAnchorPane.getParent(), 30, 0, 20, 0);
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  @FXML
+  void handleAboutUs(ActionEvent event) {
     Alert alert = Views.displayAlert(AlertType.INFORMATION, "Team Innov8", "Developers",
         "Developed by AASTU student for Advanced Programming final project");
     alert.getDialogPane().setStyle("-fx-background-color: yellow;");
@@ -61,9 +152,9 @@ public class LandingPageController {
     }
   }
 
+  // Not done yet
   @FXML
   void handleConfirmResetBtn(ActionEvent event) {
-    System.out.println(event.getSource());
     String emailInput = emailAddress.getText();
     String idNumberInput = idNumber.getText();
     try {
@@ -74,7 +165,7 @@ public class LandingPageController {
       return;
     }
     resetPageInputError.setText("");
-    
+
     // prepare email json
     Message message = new Message();
     message.setMessage(emailInput);
@@ -96,32 +187,39 @@ public class LandingPageController {
       }
 
       // If the request is accepted/status code 202
-      if(res != null && res.statusCode() == 202) return res;
-      
+      if (res != null && res.statusCode() == 202)
+        return res;
+
       // Request not accepted or server error
       Message respMessage = (Message) ReqRes.makeModelFromJson(res.body(), Message.class);
       switch (res.statusCode()) {
-        case 400:
-          Views.displayAlert(AlertType.ERROR, "Bad request", "", respMessage.getMessage()); 
+        case 400: Views.displayAlert(AlertType.ERROR, "Bad request", "", respMessage.getMessage());
           break;
         case 500:
-        default:
-          Views.displayAlert(AlertType.ERROR, "Server error", "", respMessage.getMessage()); 
+        default: Views.displayAlert(AlertType.ERROR, "Server error", "", respMessage.getMessage());
           break;
       }
       return null;
     });
-    
-    if(response == null) return;
-    System.out.println("Success: " + response.body());
+
+    if (response == null)
+      return;
+
+    // Load the OTP field page
+    try {
+      AnchorPane otpPane = (AnchorPane) Views.loadFXML("/views/otp/otp_page");
+      Views.paintPage(otpPane, resetpasswordAnchorPane, 30, 0, 20, 0);
+    } catch (IOException e) {
+     System.out.println(e.getMessage());
+    }
   }
-  
+
   @FXML
   void handleSignUp(ActionEvent event) {
     try {
       AnchorPane signUpPane = (AnchorPane) Views.loadFXML("/views/signup_page");
-      signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-      Views.paintPage(signUpPane, inputFieldAnchorPane, 0, 0, 0, 0);
+      // signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      Views.paintPage(signUpPane, inputFieldAnchorPane, 15, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -131,9 +229,9 @@ public class LandingPageController {
   void backToHome(ActionEvent event) {
     try {
       AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
-      loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
-      
-      Views.paintPage(loginPane, (AnchorPane)resetpasswordAnchorPane.getParent(), 0, 0, 0, 0);
+   //   loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
+      Views.paintPage(loginPane, (AnchorPane) resetpasswordAnchorPane.getParent(), 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -146,11 +244,19 @@ public class LandingPageController {
     String pw = password.getText();
 
     // Make some input checking(validation)
-    try { Validate.idNumber(id);
-    } catch (Error e) { idNumberError.setText(e.getMessage()); return; }
+    try {
+      Validate.idNumber(id);
+    } catch (Error e) {
+      idNumberError.setText(e.getMessage());
+      return;
+    }
     idNumberError.setText("");
-    try { Validate.password(pw); 
-    } catch (Error e) { passwordError.setText(e.getMessage()); return; }
+    try {
+      Validate.password(pw);
+    } catch (Error e) {
+      passwordError.setText(e.getMessage());
+      return;
+    }
     passwordError.setText("");
 
     // After validation send the request
@@ -178,8 +284,9 @@ public class LandingPageController {
       }
 
       // The user is authenticated, then!
-      var auth = res.headers().firstValue("Authorization");      
-      // We will save the session: everytime the client sends the request this result will be attached for the authentication
+      var auth = res.headers().firstValue("Authorization");
+      // We will save the session: everytime the client sends the request this result
+      // will be attached for the authentication
       File authFile = new File("aastu_scms/src/main/resources/auth.bat");
       if (!authFile.exists()) {
         try {
@@ -188,28 +295,26 @@ public class LandingPageController {
           output.write(auth.get().getBytes());
           output.close();
         } catch (IOException | NoSuchElementException e) {
-          Views.displayAlert(AlertType.WARNING, "Permission Error", "Access to file required",
-              "Please grant access to file");
+          Views.displayAlert(AlertType.WARNING, "Permission Error", "Access to file required", "Please grant access to the file");
           return null;
         }
       }
-      
+
       // Successfully logged the user in.
       return res;
     });
 
     // Reuest was not succesfull
-    if(requestResult == null) return;
+    if (requestResult == null)
+      return;
 
     // Request was succesfull. We can proceed to the main functionalities
     try {
       AnchorPane mainPage = (AnchorPane) Views.loadFXML("/views/main_page");
-      mainPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+      // mainPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
       Views.paintPage(mainPage, inputFieldAnchorPane, 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
-
   }
-
 }

@@ -17,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,35 +28,24 @@ import javafx.scene.layout.AnchorPane;
 public class MainPageController {
   // Main controllers
   @FXML private AnchorPane mainPageAnchorPane;
-  @FXML private MenuItem changePassword;
-  @FXML private Button checkStatusBtn;
   @FXML private AnchorPane leftAnchorPane;
-  @FXML private MenuItem logout;
-  @FXML private Button notificationBtn;
   @FXML private AnchorPane rightAnchorPane;
-  @FXML private Button submitAppBtn;
 
   // Application form controls
-  @FXML private RadioButton academicReason;
-  @FXML private ToggleGroup clearanceReason;
-  @FXML private RadioButton dropoutReason;
-  @FXML private RadioButton eoSemesterReason;
-  @FXML private RadioButton forcedWithdrawalReason;
   @FXML private AnchorPane formAnchorPane;
-  @FXML private RadioButton graduationReason;
-  @FXML private RadioButton otherReason;
   @FXML private TextArea otherReasonTextArea;
-  @FXML private RadioButton personalWithdrawalReason;
+  @FXML private ToggleGroup clearanceReason;
   @FXML private Button submitReasonBtn;
 
   // Status field controls
-  @FXML private TextField appNumberTextField;
-  @FXML private Button sendStatusBtn;
-  @FXML private TextField statusResultTextField;
   @FXML private AnchorPane statusAnchorPane;
+  @FXML private TextField appNumberTextField;
+  @FXML private TextField statusResultTextField;
+  @FXML private Button sendStatusBtn;
 
   @FXML
   void handleSendStatusBtn(ActionEvent event) {
+    statusResultTextField.setText("");
     // Read the application number
     String applicationNumber = appNumberTextField.getText();
     
@@ -151,7 +139,7 @@ public class MainPageController {
         Views.displayAlert(AlertType.WARNING, "Bad Request", "Something is wrong with the request",
             message.getMessage());
       } else {
-        Views.displayAlert(AlertType.INFORMATION, "Application Accepted", "Keep your application #",
+        Views.displayAlert(AlertType.INFORMATION, "Application Accepted", "Keep your application # U will use to check your appliction status.",
             message.getMessage());
       }
       return response;

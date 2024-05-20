@@ -8,7 +8,7 @@ public interface Callback {
    * 
    * @param error
    * @param response
-   * @return
+   * @return http response
    */
   public HttpResponse<String> next(Error error, HttpResponse<String> response);
 }
