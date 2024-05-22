@@ -1,65 +1,45 @@
-/* hjvcjdfuwifw */
-.signup-page {
+.reset-pwd-page {
   -fx-background-color: transparent;
+  -fx-padding: 20px;
 }
 
-.signup-head {
-  -fx-font-size: 36px;
+.reset-pw-head {
+  -fx-font-size: 24px;
   -fx-font-family: "Arial";
   -fx-text-fill: #042C54;
-}
-
-.inputfield-label {
-  -fx-font-size: 14px;
   -fx-font-weight: bold;
-  -fx-text-fill: #c6c6c6;
-  -fx-font-family: "Arial";
 }
 
-.signup-inputfield,
-.signup-pwd-inputfield {
-  -fx-border-radius: 7px;
-  -fx-background-radius: 7;
-  -fx-border-color: goldenrod;
-  -fx-background-color: transparent;
-  -fx-text-fill: white;
+.email-label,
+.id-label,
+.new-pwd-label,
+.otp-label {
   -fx-font-size: 14px;
   -fx-font-family: "Arial";
-}
-
-.menu-btn {
-  -fx-background-color: transparent;
-  -fx-text-fill: white;
-  -fx-font-size: 12px;
+  -fx-text-fill: #fefefe;
   -fx-font-weight: bold;
-  -fx-padding: 3px;
-  -fx-cursor: hand;
-  -fx-border-radius: 7px;
-  -fx-background-radius: 7;
+}
+
+.reset-pw-textfield {
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5;
   -fx-border-color: goldenrod;
-}
-
-.menu-btn:focused,
-.signup-inputfield:focused,
-.signup-pwd-inputfield:focused {
-  -fx-border-color: #7aa3e3;
-  -fx-border-width: 1px;
-}
-
-.radio-menu-item {
-  -fx-background-color: linear-gradient(to right, #abbaab, #ffffff);
-  ;
-  -fx-text-fill: #333;
+  -fx-background-color: transparent;
   -fx-padding: 5px;
+  -fx-font-size: 14px;
+  -fx-font-family: "Arial";
+  -fx-text-fill: #ffffff;
+  -fx-transition: border-color 0.3s, -fx-effect 0.3s;
 }
 
-.radio-menu-item:hover {
-  -fx-cursor: hand;
+.reset-pw-textfield:focused {
+  -fx-border-color: #7aa3e3;
+  -fx-effect: dropshadow(three-pass-box, rgba(122, 163, 227, 0.5), 10, 0.0, 0, 0);
 }
 
-.proceed-btn {
-  -fx-background-color: #138496;
-  -fx-border-color: #138496;
+.confirm-reset-btn {
+  -fx-background-color: #218838;
+  -fx-border-color: #1e7e34;
   -fx-text-fill: white;
   -fx-font-weight: bold;
   -fx-border-radius: 5px;
@@ -69,16 +49,16 @@
   -fx-transition: background-color 0.3s, border-color 0.3s, -fx-scale-x 0.3s, -fx-scale-y 0.3s;
 }
 
-.proceed-btn:hover {
-  -fx-background-color: #285a62;
-  -fx-border-color: #395357;
+.confirm-reset-btn:hover {
+  -fx-background-color: #1c7430;
+  -fx-border-color: #19692c;
   -fx-scale-x: 1.01;
   -fx-scale-y: 1.01;
 }
 
-.proceed-btn:pressed {
-  -fx-background-color: #3d818b;
-  -fx-border-color: #64c2d0;
+.confirm-reset-btn:pressed {
+  -fx-background-color: #1a6629;
+  -fx-border-color: #155d24;
   -fx-scale-x: 0.99;
   -fx-scale-y: 0.99;
 }
@@ -112,4 +92,6 @@
 .error-message {
   -fx-font-size: 12px;
   -fx-text-fill: #ff0000;
+  -fx-font-family: "Arial";
+  -fx-font-weight: bold;
 }

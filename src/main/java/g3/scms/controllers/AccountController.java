@@ -12,7 +12,6 @@ import g3.scms.utils.Validate;
 import g3.scms.utils.Views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert.AlertType;
@@ -22,13 +21,12 @@ public class AccountController {
   @FXML private AnchorPane notifyAnchorPane;
   @FXML private AnchorPane changePwdAnchorPane;
   
-  @FXML private Button changeBtn;
   @FXML private PasswordField confirmNewPassword;
   @FXML private PasswordField newPassword;
   @FXML private PasswordField oldPassword;
   @FXML private Label errorLabel;
 
-  @FXML void handleChangeBtn(ActionEvent event) {
+  @FXML void handleChangePwdBtn(ActionEvent event) {
     // Read the input and validate
     String oldPwd = oldPassword.getText();
     String newPwd = newPassword.getText();

@@ -1,0 +1,46 @@
+/* Style for the AnchorPane */
+.notify-page {
+  -fx-background-color: #f9f9f9;
+  -fx-padding: 10;
+}
+
+.notification-header {
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #3c3b3b;
+  -fx-background-color: #e0e0e0;
+  -fx-padding: 5 10;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-style: solid;
+}
+
+.v-box {
+  -fx-spacing: 10;
+  -fx-padding: 10;
+}
+
+.list-view {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #cccccc;
+  -fx-border-radius: 5;
+  -fx-padding: 5;
+}
+
+.list-cell {
+  -fx-font-size: 13px;
+  -fx-text-fill: #000000;
+  -fx-background-color: #f1f1f1;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 3;
+  -fx-padding: 5;
+}
+
+.list-cell:filled:selected {
+  -fx-background-color: #007bff;
+  -fx-text-fill: #ffffff;
+}
+
+.list-cell:filled:hover {
+  -fx-background-color: #e0e0e0;
+}

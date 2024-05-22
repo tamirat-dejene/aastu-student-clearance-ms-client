@@ -1,109 +1,45 @@
-.root {
-    /* -fx-background-image:url("../image/aastu-logo.jpg"); */
-    -fx-background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);
-    -fx-background-blend-mode: difference;
-    -fx-background-size: cover;
-    -fx-background-position: center;
+.landing-page {
+	-fx-background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);
+	-fx-background-blend-mode: difference;
+	-fx-background-size: cover;
+	-fx-background-position: center;
 }
 
-.login-label {
-    -fx-font-size: 36px;
-    -fx-font: "Courier New";
-    -fx-text-fill: #042C54;
+.main-app-page {
+	-fx-border-color: #654e35;
+	-fx-border-width: 0.8px;
+	-fx-border-radius: 5px;
+	-fx-background-radius: 5;
 }
-
-.id-label,
-.password-label {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #c6c6c6;
-    -fx-font: "Courier New";
-}
-
-.password-field,
-.id-field,
-.reset-pw-textfield {
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10 10 10 10;
-    -fx-border-color: goldenrod;
-    -fx-background-color: transparent;
-
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font: "Courier New";
-
-}
-
-.btn,
-.confirm-reset-btn {
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10 10 10 10;
-    -fx-font: 'Courier New';
-
-}
-
-.about-btn,
-.reset-btn {
-    -fx-background-color: transparent;
-}
-
-.reset-btn:hover,
-.about-btn:hover,
-.back-home-btn,
-.confirm-btn {
-    -fx-scale-y: 1.1;
-    -fx-cursor: hand;
-    -fx-transition: 1s;
-}
-
-.reset-label:focused,
-.about-btn:focused {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
 
 .aastu-logo {
-    -fx-background-image: url("../image/aastu-icon.png");
-    -fx-background-radius: 40%;
-    -fx-border-radius: 40%;
-    -fx-background-size: cover;
-    -fx-background-position: center;
-    -fx-background-color: transparent;
-    -fx-border-width: 1px;
+	-fx-background-image: url("../image/aastu-icon.png");
+	-fx-background-radius: 40%;
+	-fx-border-radius: 40%;
+	-fx-background-size: cover;
+	-fx-background-position: center;
+	-fx-background-color: transparent;
+	-fx-border-width: 1px;
+	-fx-border-color: transparent;
 }
 
-.error-message {
-    -fx-font-size: 12px;
-    -fx-font: "Courier New";
-    /* -fx-text-fill: #f46600; */
+.about-us-btn {
+	-fx-cursor: hand;
+	-fx-font-family: "Arial";
+	-fx-text-fill: #c6c6c6;
+	-fx-background-color: transparent;
+	-fx-font-weight: bold;
+	-fx-font-size: 11px;
+	-fx-border-color: transparent;
+	-fx-transition: background-color 0.3s, border-color 0.3s, -fx-scale-x 0.3s, -fx-scale-y 0.3s;
 }
 
-
-
-.reset-pw-head {
-    -fx-font-size: 18px;
-    -fx-font: "Courier New";
-    -fx-text-fill: #042C54;
+.about-us-btn:hover {
+	-fx-scale-x: 1.05;
+	-fx-scale-y: 1.05;
 }
 
-.back-home-btn,
-.confirm-reset-btn {
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-text-fill: white;
-}
-
-.back-home-btn {
-    -fx-background-color: #ffc107;
-    -fx-border-color: #ffc107;
-}
-
-.confirm-reset-btn {
-    -fx-background-color: #28a745;
-    -fx-border-color: #28a745;
-}
-
-.about-btn {
-    -fx-text-fill: #c6c6c6;
+.about-us-btn:pressed {
+	-fx-scale-x: 0.98;
+	-fx-scale-y: 0.98;
 }

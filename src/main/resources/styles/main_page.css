@@ -4,7 +4,7 @@
 
 .left-anchor-pane,
 .right-anchor-pane {
-  -fx-background-color: beige;
+  -fx-background-color: linear-gradient(to right, #ffefba, #ffffff);
 }
 
 .submit-app-btn,

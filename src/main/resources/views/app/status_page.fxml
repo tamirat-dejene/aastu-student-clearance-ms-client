@@ -5,13 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="statusAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
+<AnchorPane fx:id="statusAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="412.0" styleClass="status-page" stylesheets="@../../styles/status.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.ClearanceAppController">
    <children>
-      <Label layoutX="14.0" layoutY="163.0" prefHeight="33.0" prefWidth="155.0" styleClass="app-num-label" text="Enter application number" />
-      <TextField fx:id="appNumberTextField" alignment="CENTER" layoutX="169.0" layoutY="166.0" prefHeight="26.0" prefWidth="217.0" promptText="application#" styleClass="app-num-text-field" />
-      <Label layoutX="14.0" layoutY="129.0" styleClass="header-label" text="Application Status" />
-      <Button fx:id="sendStatusBtn" layoutX="390.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleSendStatusBtn" styleClass="send-status-btn" text="Send" />
-      <TextField fx:id="statusResultTextField" disable="true" layoutX="12.0" layoutY="214.0" prefHeight="26.0" prefWidth="422.0" styleClass="result-text-field" />
+      <Label layoutX="36.0" layoutY="115.0" prefHeight="34.0" prefWidth="362.0" styleClass="app-num-label" text="Enter your application number" />
+      <TextField fx:id="appNumberTextField" alignment="CENTER" layoutX="35.0" layoutY="155.0" prefHeight="34.0" prefWidth="270.0" promptText="application#" styleClass="app-num-text-field" />
+      <Label layoutX="36.0" layoutY="58.0" prefHeight="42.0" prefWidth="362.0" styleClass="header-label" text="Application Status" />
+      <Button fx:id="sendStatusBtn" layoutX="35.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleSendStatusBtn" prefHeight="5.0" prefWidth="62.0" styleClass="send-status-btn" text="Send" />
+      <TextField fx:id="statusResultTextField" alignment="CENTER" disable="true" layoutX="107.0" layoutY="196.0" prefHeight="26.0" prefWidth="198.0" styleClass="result-text-field" />
    </children>
 </AnchorPane>

@@ -1,0 +1,96 @@
+.login-page {
+  -fx-background-color: transparent;
+}
+
+.login-label {
+  -fx-font-size: 36px;
+  -fx-font-family: "Arial";
+  -fx-text-fill: #042C54;
+}
+
+.id-label,
+.password-label {
+  -fx-font-size: 15px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #c6c6c6;
+  -fx-font-family: "Arial";
+}
+
+.password-field,
+.id-field {
+  -fx-border-radius: 10px;
+  -fx-background-radius: 10;
+  -fx-border-color: goldenrod;
+  -fx-background-color: transparent;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-font-family: "Arial";
+}
+
+.password-field:focused,
+.id-field:focused {
+  -fx-border-color: #7aa3e3;
+  -fx-effect: dropshadow(three-pass-box, rgba(122, 163, 227, 0.5), 10, 0.0, 0, 0);
+}
+.create-acc-btn,
+.login-btn {
+  -fx-cursor: hand;
+  -fx-border-radius: 7px;
+  -fx-background-radius: 7;
+  -fx-font-family: "Arial";
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-padding: 6px 9px;
+  -fx-font-size: 12px;
+  -fx-border-width: 1px;
+  -fx-transition: background-color 0.3s, border-color 0.3s, -fx-scale-x 0.3s, -fx-scale-y 0.3s;
+}
+
+.create-acc-btn {
+  -fx-background-color: #2a73c0;
+  -fx-border-color: #37679a;
+}
+
+.login-btn {
+  -fx-background-color: #218838;
+  -fx-border-color: #1e7e34;
+}
+
+.create-acc-btn:hover {
+  -fx-background-color: #1f5a9c;
+  -fx-border-color: #2a4a77;
+  -fx-scale-x: 1.01;
+  -fx-scale-y: 1.01;
+}
+
+.login-btn:hover {
+  -fx-background-color: #1c7430;
+  -fx-border-color: #19692c;
+  -fx-scale-x: 1.01;
+  -fx-scale-y: 1.01;
+}
+
+.create-acc-btn:pressed,
+.login-btn:pressed {
+  -fx-background-color: #1d5a94;
+  -fx-border-color: #1a4e71;
+  -fx-scale-x: 0.99;
+  -fx-scale-y: 0.99;
+}
+
+.reset-btn {
+  -fx-background-color: transparent;
+  -fx-underline: true;
+}
+
+.reset-btn:hover,
+.confirm-btn {
+  -fx-scale-y: 1.1;
+  -fx-cursor: hand;
+  -fx-transition: 1s;
+}
+
+.error-label {
+  -fx-font-size: 12px;
+  -fx-text-fill: #ff0000;
+}

@@ -9,23 +9,23 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="signupAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="610.0" stylesheets="@../styles/signup.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.SignupController">
+<AnchorPane fx:id="signupAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="675.0" styleClass="signup-page" stylesheets="@../styles/signup.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.SignupController">
    <children>
-      <Label layoutX="28.0" layoutY="45.0" text="First name" />
-      <Label layoutX="283.0" layoutY="46.0" prefHeight="18.0" prefWidth="91.0" text="Middle name" />
-      <Label layoutX="29.0" layoutY="108.0" text="Last name" />
-      <Label layoutX="283.0" layoutY="108.0" prefHeight="18.0" prefWidth="53.0" text="Email" />
-      <Label layoutX="28.0" layoutY="170.0" text="Id number" />
-      <Label layoutX="186.0" layoutY="231.0" text="Section" />
-      <Label layoutX="30.0" layoutY="232.0" text="Class year" />
-      <TextField fx:id="firstName" alignment="CENTER" layoutX="99.0" layoutY="40.0" prefHeight="30.0" prefWidth="170.0" />
-      <TextField fx:id="middleName" alignment="CENTER" layoutX="380.0" layoutY="40.0" prefHeight="30.0" prefWidth="191.0" />
-      <TextField fx:id="lastName" alignment="CENTER" layoutX="99.0" layoutY="103.0" prefHeight="30.0" prefWidth="170.0" />
-      <TextField fx:id="emailAddress" alignment="CENTER" layoutX="324.0" layoutY="103.0" prefHeight="29.0" prefWidth="245.0" />
-      <TextField fx:id="idNumber" alignment="CENTER" layoutX="96.0" layoutY="164.0" prefHeight="30.0" prefWidth="148.0" />
-      <TextField fx:id="classYear" alignment="CENTER" layoutX="99.0" layoutY="225.0" prefHeight="30.0" prefWidth="76.0" />
-      <TextField fx:id="section" alignment="CENTER" layoutX="242.0" layoutY="225.0" prefHeight="29.0" prefWidth="54.0" />
-      <MenuButton fx:id="admissionType" layoutX="264.0" layoutY="166.0" mnemonicParsing="false" popupSide="TOP" prefHeight="27.0" prefWidth="142.0" text="Admission-type">
+      <Label layoutX="43.0" layoutY="88.0" prefHeight="30.0" prefWidth="98.0" styleClass="inputfield-label" text="First name" />
+      <Label layoutX="327.0" layoutY="88.0" prefHeight="30.0" prefWidth="111.0" styleClass="inputfield-label" text="Middle name" />
+      <Label layoutX="43.0" layoutY="151.0" prefHeight="30.0" prefWidth="98.0" styleClass="inputfield-label" text="Last name" />
+      <Label layoutX="327.0" layoutY="153.0" prefHeight="26.0" prefWidth="76.0" styleClass="inputfield-label" text="Email" />
+      <Label layoutX="42.0" layoutY="214.0" prefHeight="26.0" prefWidth="91.0" styleClass="inputfield-label" text="Id number" />
+      <Label layoutX="242.0" layoutY="273.0" prefHeight="26.0" prefWidth="91.0" styleClass="inputfield-label" text="Section" />
+      <Label layoutX="43.0" layoutY="271.0" prefHeight="30.0" prefWidth="98.0" styleClass="inputfield-label" text="Class year" />
+      <TextField fx:id="firstName" alignment="CENTER" layoutX="144.0" layoutY="88.0" prefHeight="30.0" prefWidth="170.0" styleClass="signup-inputfield" />
+      <TextField fx:id="middleName" alignment="CENTER" layoutX="443.0" layoutY="88.0" prefHeight="30.0" prefWidth="202.0" styleClass="signup-inputfield" />
+      <TextField fx:id="lastName" alignment="CENTER" layoutX="144.0" layoutY="151.0" prefHeight="30.0" prefWidth="170.0" styleClass="signup-inputfield" />
+      <TextField fx:id="emailAddress" alignment="CENTER" layoutX="406.0" layoutY="151.0" prefHeight="30.0" prefWidth="239.0" styleClass="signup-inputfield" />
+      <TextField fx:id="idNumber" alignment="CENTER" layoutX="145.0" layoutY="211.0" prefHeight="30.0" prefWidth="170.0" styleClass="signup-inputfield" />
+      <TextField fx:id="classYear" alignment="CENTER" layoutX="144.0" layoutY="271.0" prefHeight="30.0" prefWidth="76.0" styleClass="signup-inputfield" />
+      <TextField fx:id="section" alignment="CENTER" layoutX="334.0" layoutY="269.0" prefHeight="34.0" prefWidth="54.0" styleClass="signup-inputfield" />
+      <MenuButton fx:id="admissionType" layoutX="335.0" layoutY="209.0" mnemonicParsing="false" popupSide="TOP" prefHeight="27.0" prefWidth="142.0" styleClass="menu-btn" text="Admission-type">
          <items>
             <RadioMenuItem fx:id="admissionRegular" mnemonicParsing="false" onAction="#handleSelectedAdmissionType" text="Regular">
                <toggleGroup>
@@ -35,7 +35,7 @@
             <RadioMenuItem fx:id="admissionCep" mnemonicParsing="false" onAction="#handleSelectedAdmissionType" text="CEP" toggleGroup="$admissionTypeChoice" />
          </items>
       </MenuButton>
-      <MenuButton fx:id="department" layoutX="434.0" layoutY="166.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="134.0" text="Department">
+      <MenuButton fx:id="department" layoutX="512.0" layoutY="209.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="134.0" styleClass="menu-btn" text="Department">
          <items>
             <RadioMenuItem fx:id="deptArch" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Architecture">
                <toggleGroup>
@@ -56,7 +56,7 @@
             <RadioMenuItem fx:id="deptFs" mnemonicParsing="false" onAction="#handleSelectedDepartment" text="Food Science and Applied Nutrition" toggleGroup="$departmentChoice" />
          </items>
       </MenuButton>
-      <MenuButton fx:id="college" layoutX="322.0" layoutY="226.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="125.0" text="College">
+      <MenuButton fx:id="college" layoutX="401.0" layoutY="269.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="125.0" styleClass="menu-btn" text="College">
          <items>
             <RadioMenuItem fx:id="colEng" mnemonicParsing="false" onAction="#handleSelectedCollege" text="Engineering">
                <toggleGroup>
@@ -66,7 +66,7 @@
             <RadioMenuItem fx:id="colAs" mnemonicParsing="false" onAction="#handleSelectedCollege" text="Natural and Applied Science" toggleGroup="$collegeChoice" />
          </items>
       </MenuButton>
-      <MenuButton fx:id="degree" layoutX="469.0" layoutY="227.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="98.0" text="Degree">
+      <MenuButton fx:id="degree" layoutX="550.0" layoutY="269.0" mnemonicParsing="false" popupSide="TOP" prefHeight="26.0" prefWidth="98.0" styleClass="menu-btn" text="Degree">
         <items>
             <RadioMenuItem fx:id="degUnder" mnemonicParsing="false" onAction="#handleSelectedDegree" text="Undergraduate">
                <toggleGroup>
@@ -77,21 +77,22 @@
         </items>
       </MenuButton>
       
-      <PasswordField fx:id="password" alignment="CENTER" layoutX="292.0" layoutY="290.0" />
-      <Label layoutX="135.0" layoutY="296.0" text="Create-strong-password" />
-      <Button fx:id="proceedBtn" layoutX="487.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleProceedBtn" styleClass="btn" text="Proceed" />
-      <Button fx:id="backToLoginBtn" layoutX="30.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleBackToLoginBtn" styleClass="btn" text="Login" />
-      <Label fx:id="firstNameError" layoutX="99.0" layoutY="70.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
-      <Label fx:id="middleNameError" layoutX="385.0" layoutY="68.0" prefHeight="18.0" prefWidth="148.0" styleClass="error-message" />
-      <Label fx:id="lastNameError" layoutX="99.0" layoutY="133.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
-      <Label fx:id="emailError" layoutX="324.0" layoutY="133.0" prefHeight="18.0" prefWidth="164.0" styleClass="error-message" />
-      <Label fx:id="idNumberError" layoutX="99.0" layoutY="193.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
-      <Label fx:id="admissionTypeError" layoutX="265.0" layoutY="193.0" prefHeight="18.0" prefWidth="126.0" styleClass="error-message" />
-      <Label fx:id="departmentError" layoutX="434.0" layoutY="193.0" prefHeight="18.0" prefWidth="134.0" styleClass="error-message" />
-      <Label fx:id="classYearError" layoutX="32.0" layoutY="257.0" prefHeight="18.0" prefWidth="134.0" styleClass="error-message" />
-      <Label fx:id="sectionError" layoutX="186.0" layoutY="253.0" prefHeight="18.0" prefWidth="111.0" styleClass="error-message" />
-      <Label fx:id="collegeError" layoutX="320.0" layoutY="252.0" prefHeight="18.0" prefWidth="126.0" styleClass="error-message" />
-      <Label fx:id="degreeError" layoutX="468.0" layoutY="257.0" prefHeight="18.0" prefWidth="98.0" styleClass="error-message" />
-      <Label fx:id="passwordError" layoutX="292.0" layoutY="319.0" prefHeight="18.0" prefWidth="164.0" styleClass="error-message" />
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="361.0" layoutY="335.0" styleClass="signup-pwd-inputfield" />
+      <Label alignment="CENTER_RIGHT" layoutX="133.0" layoutY="336.0" prefHeight="26.0" prefWidth="219.0" styleClass="inputfield-label" text="Create-strong-password" />
+      <Button fx:id="proceedBtn" layoutX="550.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleProceedBtn" prefHeight="26.0" prefWidth="98.0" styleClass="proceed-btn" text="Proceed" />
+      <Button fx:id="backToLoginBtn" layoutX="42.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleBackToLoginBtn" prefHeight="26.0" prefWidth="76.0" styleClass="back-home-btn" text="Login" />
+      <Label fx:id="firstNameError" layoutX="146.0" layoutY="118.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
+      <Label fx:id="middleNameError" layoutX="443.0" layoutY="118.0" prefHeight="18.0" prefWidth="148.0" styleClass="error-message" />
+      <Label fx:id="lastNameError" layoutX="147.0" layoutY="181.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
+      <Label fx:id="emailError" layoutX="406.0" layoutY="181.0" prefHeight="18.0" prefWidth="164.0" styleClass="error-message" />
+      <Label fx:id="idNumberError" layoutX="146.0" layoutY="241.0" prefHeight="18.0" prefWidth="142.0" styleClass="error-message" />
+      <Label fx:id="admissionTypeError" layoutX="330.0" layoutY="241.0" prefHeight="18.0" prefWidth="126.0" styleClass="error-message" />
+      <Label fx:id="departmentError" layoutX="512.0" layoutY="241.0" prefHeight="18.0" prefWidth="134.0" styleClass="error-message" />
+      <Label fx:id="classYearError" layoutX="108.0" layoutY="306.0" prefHeight="18.0" prefWidth="111.0" styleClass="error-message" />
+      <Label fx:id="sectionError" layoutX="241.0" layoutY="298.0" prefHeight="18.0" prefWidth="148.0" styleClass="error-message" />
+      <Label fx:id="collegeError" layoutX="401.0" layoutY="306.0" prefHeight="18.0" prefWidth="126.0" styleClass="error-message" />
+      <Label fx:id="degreeError" layoutX="550.0" layoutY="306.0" prefHeight="18.0" prefWidth="98.0" styleClass="error-message" />
+      <Label fx:id="passwordError" layoutX="361.0" layoutY="363.0" prefHeight="18.0" prefWidth="164.0" styleClass="error-message" />
+      <Label layoutX="42.0" layoutY="16.0" prefHeight="48.0" prefWidth="600.0" styleClass="signup-head" text="Signup" />
    </children>
 </AnchorPane>

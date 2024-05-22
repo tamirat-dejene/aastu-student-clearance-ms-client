@@ -7,23 +7,22 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="formAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="460.0" stylesheets="@../../styles/main_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
+<AnchorPane fx:id="formAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="359.0" prefWidth="458.0" styleClass="reason-page" stylesheets="@../../styles/form.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.ClearanceAppController">
    <children>
-      <Label layoutX="19.0" layoutY="53.0" prefHeight="28.0" prefWidth="120.0" styleClass="reason-label" text="Reason for clearance" />
-      <RadioButton fx:id="graduationReason" layoutX="36.0" layoutY="94.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="143.0" text="Graduation">
+      <Label layoutX="19.0" layoutY="53.0" prefHeight="28.0" prefWidth="406.0" styleClass="reason-label" text="Reason for clearance" />
+      <RadioButton fx:id="graduationReason" layoutX="19.0" layoutY="94.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="158.0" text="Graduation">
          <toggleGroup>
             <ToggleGroup fx:id="clearanceReason" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="eoSemesterReason" layoutX="194.0" layoutY="94.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="202.0" text="End of semester/Academic year" toggleGroup="$clearanceReason" />
-      <RadioButton fx:id="personalWithdrawalReason" layoutX="194.0" layoutY="132.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="202.0" text="Withdrawal for Personal Reason" toggleGroup="$clearanceReason" />
-      <RadioButton fx:id="academicReason" layoutX="194.0" layoutY="167.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="202.0" text="Withdrawal for Academic Reason" toggleGroup="$clearanceReason" />
-      <RadioButton fx:id="forcedWithdrawalReason" layoutX="36.0" layoutY="132.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="143.0" text="Forced Withdrawal" toggleGroup="$clearanceReason" />
-      <RadioButton fx:id="dropoutReason" layoutX="37.0" layoutY="167.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="143.0" text="Dropout" toggleGroup="$clearanceReason" />
-      <RadioButton fx:id="otherReason" layoutX="37.0" layoutY="206.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" text="Other" toggleGroup="$clearanceReason" />
-      <TextArea fx:id="otherReasonTextArea" layoutX="128.0" layoutY="206.0" prefHeight="75.0" prefWidth="269.0" promptText="Use less than 30 words(200 characters)" wrapText="true" />
-      <Button fx:id="submitReasonBtn" layoutX="128.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleSubmitReasonBtn" prefHeight="28.0" prefWidth="77.0" text="Submit" />
-      <Label layoutX="18.0" layoutY="14.0" prefHeight="28.0" prefWidth="191.0" styleClass="header-label" text="Clearance Application Form" />
+      <RadioButton fx:id="eoSemesterReason" layoutX="186.0" layoutY="94.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="240.0" styleClass="radio-button" text="End of semester/Academic year" toggleGroup="$clearanceReason" />
+      <RadioButton fx:id="personalWithdrawalReason" layoutX="186.0" layoutY="136.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="240.0" styleClass="radio-button" text="Withdrawal for Personal Reason" toggleGroup="$clearanceReason" />
+      <RadioButton fx:id="academicReason" layoutX="186.0" layoutY="181.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="240.0" styleClass="radio-button" text="Withdrawal for Academic Reason" toggleGroup="$clearanceReason" />
+      <RadioButton fx:id="forcedWithdrawalReason" layoutX="19.0" layoutY="136.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="158.0" styleClass="radio-button" text="Forced Withdrawal" toggleGroup="$clearanceReason" />
+      <RadioButton fx:id="dropoutReason" layoutX="19.0" layoutY="181.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="158.0" styleClass="radio-button" text="Dropout" toggleGroup="$clearanceReason" />
+      <RadioButton fx:id="otherReason" layoutX="18.0" layoutY="224.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" styleClass="radio-button" text="Other" toggleGroup="$clearanceReason" />
+      <TextArea fx:id="otherReasonTextArea" layoutX="146.0" layoutY="224.0" prefHeight="75.0" prefWidth="280.0" promptText="Use less than 30 words(200 characters)" wrapText="true" />
+      <Button fx:id="submitReasonBtn" layoutX="147.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleSubmitReasonBtn" prefHeight="28.0" prefWidth="77.0" styleClass="submitReasonBtn" text="Submit" />
+      <Label layoutX="18.0" layoutY="14.0" prefHeight="28.0" prefWidth="413.0" styleClass="header-label" text="Clearance Application Form" />
    </children>
 </AnchorPane>

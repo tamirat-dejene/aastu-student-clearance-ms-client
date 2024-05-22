@@ -1,0 +1,36 @@
+.dialog-pane {
+  -fx-font-family: 'Arial';
+  -fx-font-size: 12px;
+}
+
+.dialog-pane.information {
+  -fx-border-color: #2C7BE5;
+  -fx-border-width: 1.5px;
+  -fx-background-color: #DCEEFB;
+  -fx-header-color: #2C7BE5;
+  -fx-content-color: #2C7BE5;
+}
+
+.dialog-pane.warning {
+  -fx-border-color: #F7B924;
+  -fx-border-width: 1.5px;
+  -fx-background-color: #FFF4E5;
+  -fx-header-color: #F7B924;
+  -fx-content-color: #F7B924;
+}
+
+.dialog-pane.error {
+  -fx-border-color: #D92550;
+  -fx-border-width: 1.5px;
+  -fx-background-color: #FFE3E3;
+  -fx-header-color: #D92550;
+  -fx-content-color: #D92550;
+}
+
+.dialog-pane.confirmation {
+  -fx-border-color: #37B24D;
+  -fx-border-width: 1.5px;
+  -fx-background-color: #EBF8E1;
+  -fx-header-color: #37B24D;
+  -fx-content-color: #37B24D;
+}

@@ -1,0 +1,47 @@
+/* Style for the AnchorPane */
+.status-page {
+  -fx-background-color: #f0f0f0;
+  -fx-padding: 20;
+}
+
+.header-label {
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #042C54;
+}
+
+.app-num-label {
+  -fx-font-size: 14px;
+  -fx-text-fill: #666666;
+}
+
+.app-num-text-field {
+  -fx-font-size: 14px;
+  -fx-text-fill: #000000;
+  -fx-background-color: #ffffff;
+  -fx-border-color: #cccccc;
+  -fx-border-radius: 5;
+  -fx-padding: 5;
+}
+
+.send-status-btn {
+  -fx-font-size: 14px;
+  -fx-text-fill: #ffffff;
+  -fx-background-color: #007bff;
+  -fx-background-radius: 5;
+  -fx-padding: 5 8;
+}
+
+.send-status-btn:hover {
+  -fx-background-color: #0056b3;
+  -fx-cursor: hand;
+}
+
+.result-text-field {
+  -fx-font-size: 14px;
+  -fx-text-fill: #000000;
+  -fx-background-color: #e9ecef;
+  -fx-border-color: #ced4da;
+  -fx-border-radius: 5;
+  -fx-padding: 5;
+}

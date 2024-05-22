@@ -94,7 +94,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>g3.scms.database.Db</mainClass>
+                            <mainClass>g3.scms.controllers.App</mainClass>
                         </configuration>
                     </execution>
                     <execution>

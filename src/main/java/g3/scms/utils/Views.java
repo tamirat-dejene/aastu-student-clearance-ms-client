@@ -1,6 +1,7 @@
 package g3.scms.utils;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,15 +22,34 @@ public class Views {
    * @param message alert message
    * @return the display alert
    */
-  public static Alert displayAlert(Alert.AlertType alertTpe, String title, String headerText, String message) {
-    Alert alert = new Alert(alertTpe);
+  public static Alert displayAlert(Alert.AlertType alertType, String title, String headerText, String message) {
+    Alert alert = new Alert(alertType);
     alert.setTitle(title);
     alert.setHeaderText(headerText);
     alert.setContentText(message);
 
-    // Style the dialog pane
-    alert.getDialogPane().setStyle("-fx-background: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);");
-    alert.getDialogPane().getStylesheets().add("s");
+    var dialogPane = alert.getDialogPane();
+    try {
+      dialogPane.getStylesheets().add(Views.class.getResource("/styles/dialogpane.css").toURI().toString());
+    } catch (URISyntaxException e) {
+    }
+
+    switch (alertType) {
+      case INFORMATION:
+        dialogPane.getStyleClass().add("information");
+        break;
+      case WARNING:
+        dialogPane.getStyleClass().add("warning");
+        break;
+      case ERROR:
+        dialogPane.getStyleClass().add("error");
+        break;
+      case CONFIRMATION:
+        dialogPane.getStyleClass().add("confirmation");
+        break;
+      default:
+        break;
+    }
     alert.showAndWait();
     return alert;
   }
