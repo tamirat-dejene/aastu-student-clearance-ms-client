@@ -10,12 +10,11 @@ import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 import g3.scms.utils.Views;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -23,10 +22,18 @@ import javafx.scene.layout.VBox;
 public class MainPageController {
   // Main controllers
   @FXML private AnchorPane mainPageAnchorPane;
+  @FXML private SplitPane splitPane;
   @FXML private AnchorPane leftAnchorPane;
   @FXML private AnchorPane rightAnchorPane;
   @FXML private ListView<Notification> listView;
   @FXML private VBox vbox; 
+  
+  @FXML
+  void handleHomeBtn(ActionEvent event) {
+    leftAnchorPane.getChildren().clear();
+    rightAnchorPane.getChildren().clear();
+    splitPane.setDividerPositions(0.65);
+  }
 
   @FXML
   void handleSubmitApp(ActionEvent event) throws IOException {
@@ -41,7 +48,7 @@ public class MainPageController {
   }
 
 
-  @SuppressWarnings("deprecation")
+  @SuppressWarnings({ "unchecked" })
   @FXML
   void handleNotificationBtn(ActionEvent event) throws IOException {
     AnchorPane notifyAnchorPane = (AnchorPane) Views.loadFXML("/views/notification/notify_page");
@@ -76,37 +83,18 @@ public class MainPageController {
     if (resp == null)
       return;
 
-    ObservableList<Notification> notifications = FXCollections.observableArrayList();
-    Notification notification = (Notification) ReqRes.makeModelFromJson(resp.body(), Notification.class);
-    notifications.add(notification);
-
+    Notification[] n = new Notification[1];
+    Notification[] notifications =  (Notification[]) ReqRes.makeModelFromJson(resp.body(), n.getClass());
+    
     vbox = (VBox) notifyAnchorPane.getChildren()
         .filtered(child -> child.getId() != null && child.getId().equals("vbox")).get(0);
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ListView<Notification> listView = (ListView) vbox.getChildren().filtered(node -> node instanceof ListView).get(0);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(notification);
-    listView.getItems().add(new Notification("Profile picture", "Do you have a profile picture?",
-        Util.getDateString(new Date(2022, 9, 12, 6, 23, 23))));
+    ListView<Notification> listView = (ListView<Notification>) vbox.getChildren().filtered(node -> node instanceof ListView).get(0);
+    listView.getItems().addAll(notifications);
 
     listView.getItems().stream().sorted((n1, n2) -> {
       Date d1 = Util.parseDateString(n1.getDate());
       Date d2 = Util.parseDateString(n2.getDate());
-      return d2.compareTo(d1);
+      return d1.compareTo(d2);
     });
 
     listView.getSelectionModel().selectedItemProperty().addListener((notif, b, c) -> {

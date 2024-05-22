@@ -2,7 +2,6 @@ module com.g3 {
   requires javafx.fxml;
   requires java.sql;
   requires org.apache.commons.codec;
-  requires org.kordamp.bootstrapfx.core;
   
   requires com.google.gson;
   requires transitive java.net.http;

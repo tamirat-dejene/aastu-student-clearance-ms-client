@@ -1,7 +1,5 @@
 package g3.scms.controllers;
 
-// import org.kordamp.bootstrapfx.BootstrapFX;
-
 import g3.scms.api.Api;
 import g3.scms.model.AdmissionType;
 import g3.scms.model.College;
@@ -15,16 +13,18 @@ import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 import g3.scms.utils.Validate;
 import g3.scms.utils.Views;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.Optional;
 
 public class SignupController {
   @FXML private AnchorPane signupAnchorPane;
@@ -59,7 +59,7 @@ public class SignupController {
   private static RadioMenuItem selectedDegree = null;
   private static RadioMenuItem selectedAdmissionType = null;
 
-   private void setErrorMessage(String message, int errCode) {
+  private void setErrorMessage(String message, int errCode) {
     switch (errCode) {
       case 1: firstNameError.setText(message); break;
       case 2: middleNameError.setText(message); break;
@@ -105,7 +105,6 @@ public class SignupController {
   @FXML void handleBackToLoginBtn(ActionEvent event) {
     try {
         AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
-        // loginPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         AnchorPane parentPane = (AnchorPane) signupAnchorPane.getParent();
 
         Views.paintPage(loginPane, parentPane, 0, 0, 0, 0);
@@ -149,6 +148,9 @@ public class SignupController {
       return;
     }
 
+    /// Verify if the provided email exists and belongs to the requesting user
+    if(!verifyEmail(_email)) return;
+    
     // Since now we are past the validation let's begin sending the request.
     // First create the json from the Student object/model
     Student student = new Student(_fname, _mname, _lname, _id, _email, _section, Integer.parseInt(_class_year), College.toEnum(_college),
@@ -195,5 +197,56 @@ public class SignupController {
       Views.displayAlert(AlertType.INFORMATION, "Successfully Signedup", "You can now login", response.body());
       handleBackToLoginBtn(new ActionEvent());
     }
+  }
+
+  private static boolean verifyEmail(String email) {
+    Request req = new Request();
+    req.setBaseUrl(Util.getEnv().getProperty("API_BASE_URL"));
+    req.setPath("api/auth/signup/?emailid=" + email);
+    Api api = new Api();
+    var rr = api.get(req, (error, resp) -> {
+      if (error != null) {
+        Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "The thing is", error.getMessage());
+        return null;
+      }
+
+      int responseCode = resp.statusCode();
+      var responseMessage = (Message) ReqRes.makeModelFromJson(resp.body(), Message.class);
+      if (responseCode != 200) {
+        Views.displayAlert(AlertType.WARNING, "Bad request", "The thing is", responseMessage.getMessage());
+        return null;
+      }
+      return resp;
+    });
+
+    if (rr == null)
+      return false;
+
+    // Send back the otp sent to the user email
+    TextInputDialog dialog = new TextInputDialog();
+    dialog.setTitle("Verify email");
+    dialog.setHeaderText("Open your email");
+    dialog.setContentText("Enter the OTP we sent to you: ");
+
+    Optional<String> result = dialog.showAndWait();
+    String otp = result.isPresent() ? result.get() : null;
+    if (otp == null) return false;
+    
+    req.setPath("api/auth/signup/?otp=" + otp);
+
+    var response = api.get(req, (err, resp) -> {
+      if(err != null) {
+        Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "Error validating email", err.getMessage());
+        return null;
+      }
+      return resp;
+    });
+
+    if (response.statusCode() == 202)
+      return true;
+    if (response.statusCode() == 409)
+      Views.displayAlert(AlertType.WARNING, "Forbidden", "Error validating email", "Incorrect OTP");
+    Views.displayAlert(AlertType.WARNING, "Server Error", "Error validating email", "Try again later");
+    return false;
   }
 }

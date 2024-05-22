@@ -129,7 +129,7 @@ public class ClearanceAppController {
             message.getMessage());
       } else {
         Views.displayAlert(AlertType.INFORMATION, "Application Accepted",
-            "Keep your application # U will use to check your appliction status.",
+            "Keep your application# U will use to check your appliction status.",
             message.getMessage());
       }
       return response;

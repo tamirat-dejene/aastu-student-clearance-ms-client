@@ -9,6 +9,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 public class Views {
+  /**
+   * Loads the fxml file using getResource method
+   * @param fxml the file path relative to the resource folder
+   * @return loaded object heirarchy(Parent)
+   * @throws IOException if the file is not found
+   */
   public static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Views.class.getResource(fxml + ".fxml"));
     return fxmlLoader.load();
@@ -31,8 +37,7 @@ public class Views {
     var dialogPane = alert.getDialogPane();
     try {
       dialogPane.getStylesheets().add(Views.class.getResource("/styles/dialogpane.css").toURI().toString());
-    } catch (URISyntaxException e) {
-    }
+    } catch (URISyntaxException e) { }
 
     switch (alertType) {
       case INFORMATION:

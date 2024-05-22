@@ -1,8 +1,5 @@
 package g3.scms.controllers;
 
-import org.kordamp.bootstrapfx.BootstrapFX;
-
-
 import g3.scms.api.Api;
 import g3.scms.model.Login;
 import g3.scms.model.Request;
@@ -41,7 +38,6 @@ public class LoginPageController {
   void handleForgotPassword(ActionEvent event) {
     try {
       AnchorPane forgotPage = (AnchorPane) Views.loadFXML("/views/otp/forgot_password_page");
-      forgotPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
       Views.paintPage(forgotPage, loginAnchorPane, 50, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -52,7 +48,6 @@ public class LoginPageController {
   void handleSignUp(ActionEvent event) {
     try {
       AnchorPane signUpPane = (AnchorPane) Views.loadFXML("/views/signup_page");
-      // signUpPane.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
       Views.paintPage(signUpPane, loginAnchorPane, 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -134,7 +129,6 @@ public class LoginPageController {
     // Request was succesfull. We can proceed to the main functionalities
     try {
       AnchorPane mainPage = (AnchorPane) Views.loadFXML("/views/main_page");
-      // mainPage.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
       Views.paintPage(mainPage, loginAnchorPane, 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());

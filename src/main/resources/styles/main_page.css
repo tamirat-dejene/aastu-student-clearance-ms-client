@@ -7,22 +7,36 @@
   -fx-background-color: linear-gradient(to right, #ffefba, #ffffff);
 }
 
+.home-btn,
 .submit-app-btn,
 .check-status-btn,
 .notification-btn,
 .profile-menu-btn {
-  -fx-text-fill: white;
+  -fx-text-fill: #ffffff;
   -fx-border-radius: 5px;
   -fx-background-radius: 5px;
-  -fx-font: bold 14pt "Arial";
+  -fx-font-weight: bold;
+  -fx-padding: 3;
   -fx-font-size: 13px;
 }
 
+.home-btn:focused,
 .submit-app-btn:focused,
 .check-status-btn:focused,
 .notification-btn:focused,
 .profile-menu-btn:focused {
   -fx-border-width: 2px;
+}
+
+.home-btn {
+  -fx-background-color: #ff8800;
+  -fx-border-color: #ff6f00;
+}
+
+.home-btn:hover {
+  -fx-background-color: #ee950f;
+  -fx-border-color: #d05e06;
+  -fx-cursor: hand;
 }
 
 .submit-app-btn {
@@ -71,6 +85,6 @@
   -fx-cursor: hand;
 }
 
-.profile-menu-btn .menu-item:hover{
+.profile-menu-btn .menu-item:hover {
   -fx-cursor: hand;
 }
