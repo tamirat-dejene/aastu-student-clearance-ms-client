@@ -7,6 +7,8 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.net.http.HttpTimeoutException;
+import java.time.Duration;
 
 import g3.scms.model.Request;
 import g3.scms.model.Transcript;
@@ -14,6 +16,7 @@ import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 
 public class Api {
+  private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(5);
 
   /**
    * Sends a POST request using the given request and callback.
@@ -23,7 +26,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> post(Request request, Callback cb) {
-    HttpClient client = HttpClient.newHttpClient();
+    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -33,11 +36,14 @@ public class Api {
       HttpRequest httpRequest = builder.build();
 
       response = client.send(httpRequest, BodyHandlers.ofString());
+    } catch (HttpTimeoutException e) {
+      logError(e);
+      error = new Error("Request timed out. Try again later");
     } catch (IOException | InterruptedException | IllegalStateException e) {
       logError(e);
       error = new Error("The server can't be reached! Stay strong, bud!");
     }
-    
+
     return cb.next(error, response);
   }
 
@@ -49,7 +55,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> get(Request request, Callback cb) {
-    HttpClient client = HttpClient.newHttpClient();
+    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -59,7 +65,10 @@ public class Api {
       HttpRequest httpRequest = builder.build();
 
       response = client.send(httpRequest, BodyHandlers.ofString());
-      
+
+    } catch (HttpTimeoutException e) {
+      logError(e);
+      error = new Error("Request timed out. Try again later");
     } catch (IOException | InterruptedException | IllegalStateException e) {
       logError(e);
       error = new Error("Failed to send GET request: " + e.getMessage());
@@ -76,7 +85,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> put(Request request, Callback cb) {
-    HttpClient client = HttpClient.newHttpClient();
+    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -87,6 +96,9 @@ public class Api {
 
       response = client.send(httpRequest, BodyHandlers.ofString());
 
+    } catch (HttpTimeoutException e) {
+      logError(e);
+      error = new Error("Request timed out. Try again later");
     } catch (IOException | InterruptedException | IllegalStateException e) {
       logError(e);
       error = new Error("The server can't be reached! Stay strong, bud!");
@@ -103,7 +115,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> delete(Request request, Callback cb) {
-    HttpClient client = HttpClient.newHttpClient();
+    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -114,6 +126,9 @@ public class Api {
 
       response = client.send(httpRequest, BodyHandlers.ofString());
 
+    } catch (HttpTimeoutException e) {
+      logError(e);
+      error = new Error("Request timed out. Try again later");
     } catch (IOException | InterruptedException | IllegalStateException e) {
       logError(e);
       error = new Error("Failed to send DELETE request: " + e.getMessage());

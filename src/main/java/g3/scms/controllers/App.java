@@ -8,9 +8,9 @@ import g3.scms.model.Request;
 import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 import g3.scms.utils.Views;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,12 +25,15 @@ public class App extends Application {
 
     /**
      * Application entry point
+     *
      * @param args
      */
     public static void main(String[] args) {
         try {
             launch();
-        } catch (Exception e) { System.out.println(e.getMessage()); }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -40,10 +43,11 @@ public class App extends Application {
         AnchorPane mainAppPane = (AnchorPane) homePane.getChildren()
                 .filtered(node -> node.getId() != null && node.getId().equals("mainAppAnchorPane"))
                 .get(0);
+        AnchorPane homePicture = (AnchorPane) Views.loadFXML("/views/home");
 
         // Check if the user has saved login token
         // If yes we don't wanna show the login page else we proceed to the login page
-        File file = new File("aastu_scms/src/main/resources/auth.bat");
+        File file = new File("src/main/resources/auth.bat");
         if (file.exists()) {
             // check if the token is not tampered with by sending the login request using
             // the saved token
@@ -53,6 +57,8 @@ public class App extends Application {
                 if (isValidToken) {
                     // Load the main functionality page
                     AnchorPane mainPane = (AnchorPane) Views.loadFXML("/views/main_page");
+                    AnchorPane lap = getLeftAnchorPane(mainPane);
+                    Views.paintPage(homePicture, lap, 0, 0, 0, 0);
                     Views.paintPage(mainPane, mainAppPane, 0, 0, 0, 0);
                 } else {
                     // Remove the current invalid token file and show login pane
@@ -60,9 +66,10 @@ public class App extends Application {
                     Views.paintPage(loginPane, mainAppPane, 0, 0, 0, 0);
                 }
             } catch (Error e) {
-                System.out.println(e.getMessage());
+                Views.paintPage(loginPane, mainAppPane, 0, 0, 0, 0);
             }
-        } else Views.paintPage(loginPane, mainAppPane, 0, 0, 0, 0);
+        } else
+            Views.paintPage(loginPane, mainAppPane, 0, 0, 0, 0);
 
         scene = new Scene(homePane, 1080, 540);
 
@@ -81,7 +88,6 @@ public class App extends Application {
      *              by seting Authorization header in the header request
      * @return true if the token is valid, false otherwise
      */
-
     private static boolean checkSessionValidity(String token) {
         // Build the request adding the authorization header
         Request request = new Request();
@@ -104,5 +110,13 @@ public class App extends Application {
         if (response.statusCode() == 401)
             return false;
         return false;
+    }
+
+    private AnchorPane getLeftAnchorPane(AnchorPane ap) {
+        SplitPane pane = (SplitPane) ap.getChildren()
+                .filtered(node -> node.getId() != null && node.getId().equals("splitPane")).get(0);
+        AnchorPane lap = (AnchorPane) pane.getItems()
+                .filtered(node -> node.getId() != null && node.getId().equals("leftAnchorPane")).get(0);
+        return lap;
     }
 }

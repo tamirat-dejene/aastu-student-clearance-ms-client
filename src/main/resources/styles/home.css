@@ -1,0 +1,33 @@
+/* home.css */
+
+.home-pane {
+  -fx-background-color: #f0f0f0;
+  -fx-padding: 20;
+}
+
+.home-h1 {
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2e8b57;
+  -fx-alignment: center;
+}
+
+.home-h2 {
+  -fx-font-size: 15px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #4682b4;
+  -fx-alignment: center;
+}
+
+.home-list {
+  -fx-font-size: 14px;
+  -fx-text-fill: #000000;
+  -fx-padding: 10 0 10 20;
+}
+
+.home-footer {
+  -fx-font-size: 12px;
+  -fx-text-fill: #767676;
+  -fx-alignment: center;
+  -fx-padding: 10 0 0 0;
+}

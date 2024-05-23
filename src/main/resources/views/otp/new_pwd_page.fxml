@@ -7,10 +7,10 @@
 
 <AnchorPane fx:id="newPwdAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="405.0" styleClass="reset-pwd-page" stylesheets="@../../styles/forgotpwd.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.ResetPasswordController">
    <children>
-      <Label layoutX="67.0" layoutY="105.0" prefHeight="26.0" prefWidth="270.0" styleClass="new-pwd-label" text="Enter new password" />
-      <PasswordField fx:id="newPwd" layoutX="67.0" layoutY="142.0" prefHeight="29.0" prefWidth="185.0" styleClass="reset-pw-textfield" />
-      <Button fx:id="confirmNewPwdToNewPwdBtn" layoutX="274.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleConfirmNewPwdBtn" prefHeight="26.0" prefWidth="62.0" styleClass="confirm-reset-btn" text="Confirm" />
-      <Button fx:id="cancelNewPwdBtn" layoutX="67.0" layoutY="184.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="26.0" prefWidth="58.0" styleClass="back-home-btn" text="Cancel" />
-      <Label layoutX="67.0" layoutY="34.0" prefHeight="42.0" prefWidth="292.0" styleClass="reset-pw-head" text="Reset Password" />
+      <Label layoutX="67.0" layoutY="72.0" prefHeight="26.0" prefWidth="270.0" styleClass="new-pwd-label" text="Enter new password" />
+      <PasswordField fx:id="newPwd" layoutX="67.0" layoutY="113.0" prefHeight="29.0" prefWidth="185.0" styleClass="reset-pw-textfield" />
+      <Button fx:id="confirmNewPwdToNewPwdBtn" layoutX="274.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleConfirmNewPwdBtn" prefHeight="26.0" prefWidth="62.0" styleClass="confirm-reset-btn" text="Confirm" />
+      <Button fx:id="cancelNewPwdBtn" layoutX="67.0" layoutY="161.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="26.0" prefWidth="58.0" styleClass="back-home-btn" text="Cancel" />
+      <Label layoutX="67.0" layoutY="14.0" prefHeight="42.0" prefWidth="292.0" styleClass="reset-pw-head" text="Reset Password" />
    </children>
 </AnchorPane>

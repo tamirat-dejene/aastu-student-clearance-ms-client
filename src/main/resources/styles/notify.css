@@ -34,11 +34,12 @@
   -fx-border-color: #e0e0e0;
   -fx-border-radius: 3;
   -fx-padding: 5;
+  -fx-font-family: "Arial";
 }
 
 .list-cell:filled:selected {
-  -fx-background-color: #007bff;
-  -fx-text-fill: #ffffff;
+  -fx-background-color: #dedede;
+  -fx-text-fill: #000000;
 }
 
 .list-cell:filled:hover {

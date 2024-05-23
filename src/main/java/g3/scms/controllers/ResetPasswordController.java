@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class ResetPasswordController {
@@ -44,7 +45,7 @@ public class ResetPasswordController {
       return;
     }
     resetPageInputError.setText("");
-
+    idNumberInput = idNumberInput.toUpperCase();
     // prepare email json
     Message message = new Message();
     message.setMessage(emailInput);
@@ -61,7 +62,7 @@ public class ResetPasswordController {
     Api api = new Api();
     var response = api.put(request, (err, res) -> {
       if (err != null) {
-        Views.displayAlert(AlertType.ERROR, "System Error", "Can't reach the server!", err.getMessage());
+        Views.displayAlert(AlertType.ERROR, "System Error", "Server can't be reached at the moment!", err.getMessage());
         return null;
       }
 
@@ -89,10 +90,8 @@ public class ResetPasswordController {
     // Load the OTP field page
     try {
       AnchorPane otpPane = (AnchorPane) Views.loadFXML("/views/otp/otp_page");
-      Views.paintPage(otpPane, resetpasswordAnchorPane, 30, 0, 20, 0);
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
+      Views.paintPage(otpPane, (AnchorPane) resetpasswordAnchorPane.getParent(), 85, 0, 20, 0);
+    } catch (IOException e) { }
   }
 
   @FXML
@@ -101,7 +100,7 @@ public class ResetPasswordController {
     try {
       Validate.password(newPassword);
     } catch (Error e) {
-      Views.displayAlert(AlertType.ERROR, "Invalid input", "", e.getMessage());
+      Views.displayAlert(AlertType.ERROR, "Invalid input", "Provide valid password", e.getMessage());
       return;
     }
 
@@ -119,7 +118,7 @@ public class ResetPasswordController {
     Api api = new Api();
     api.get(request, (error, response) -> {
       if (error != null) {
-        Views.displayAlert(AlertType.ERROR, "System/Connection Error", "", error.getMessage());
+        Views.displayAlert(AlertType.ERROR, "Server/Connection Error", "Server can't be reached at the moment", error.getMessage());
         return null;
       }
 
@@ -131,7 +130,7 @@ public class ResetPasswordController {
       }
 
       // Valid
-      Views.displayAlert(AlertType.INFORMATION, "Successfull", "Now you can login", message.getMessage());
+      Views.displayAlert(AlertType.INFORMATION, "Password reset", "Now you can login", message.getMessage());
       AnchorPane loginPane;
       try {
         loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
@@ -152,7 +151,7 @@ public class ResetPasswordController {
     Api api = new Api();
     var resp = api.get(request, (error, response) -> {
       if (error != null) {
-        Views.displayAlert(AlertType.ERROR, "System/Connection Error", "", error.getMessage());
+        Views.displayAlert(AlertType.ERROR, "Server/Connection Error", "Error connecting to the server", error.getMessage());
         return null;
       }
 
@@ -173,7 +172,7 @@ public class ResetPasswordController {
     // Load the newpwd page
     try {
       AnchorPane newpwdPane = (AnchorPane) Views.loadFXML("/views/otp/new_pwd_page");
-      Views.paintPage(newpwdPane, (AnchorPane) otpAnchorPane.getParent(), 30, 0, 20, 0);
+      Views.paintPage(newpwdPane, (AnchorPane) otpAnchorPane.getParent(), 70, 0, 20, 0);
     } catch (IOException e) {
       System.out.println(e.getMessage());
     }
@@ -183,7 +182,7 @@ public class ResetPasswordController {
   void backToHome(ActionEvent event) {
     try {
       AnchorPane loginPane = (AnchorPane) Views.loadFXML("/views/login_page");
-      Views.paintPage(loginPane, (AnchorPane) resetpasswordAnchorPane.getParent(), 0, 0, 0, 0);
+      Views.paintPage(loginPane, (AnchorPane)((Button)event.getSource()).getParent().getParent(), 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

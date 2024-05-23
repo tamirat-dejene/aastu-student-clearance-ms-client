@@ -8,6 +8,7 @@
 
 <AnchorPane fx:id="mainPageAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="682.0" styleClass="main-page" stylesheets="@../styles/main_page.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.MainPageController">
    <children>
+      <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleHomeBtn" prefHeight="28.0" prefWidth="78.0" styleClass="home-btn" text="Home" />
       <Button fx:id="submitAppBtn" layoutX="104.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSubmitApp" prefHeight="28.0" prefWidth="164.0" styleClass="submit-app-btn" text="Submit Application" />
       <Button fx:id="checkStatusBtn" layoutX="282.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleCheckStatusBtn" prefHeight="28.0" prefWidth="118.0" styleClass="check-status-btn" text="Check Status" />
       <Button fx:id="notificationBtn" layoutX="475.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleNotificationBtn" styleClass="notification-btn" text="Notifcation" />
@@ -17,12 +18,11 @@
           <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
         </items>
       </MenuButton>
-      <SplitPane fx:id="splitPane" dividerPositions="0.65" layoutY="54.0" prefHeight="349.0" prefWidth="682.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.91" layoutY="54.0" prefHeight="349.0" prefWidth="682.0">
         <items>
           <AnchorPane fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="437.0" styleClass="left-anchor-pane" />
           <AnchorPane fx:id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="229.0" styleClass="right-anchor-pane" />
         </items>
       </SplitPane>
-      <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleHomeBtn" prefHeight="28.0" prefWidth="78.0" styleClass="home-btn" text="Home" />
    </children>
 </AnchorPane>

@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -34,8 +35,7 @@ public class LoginPageController {
   @FXML private Button signUp;
   @FXML private Button submit;
 
-  @FXML
-  void handleForgotPassword(ActionEvent event) {
+  @FXML void handleForgotPassword(ActionEvent event) {
     try {
       AnchorPane forgotPage = (AnchorPane) Views.loadFXML("/views/otp/forgot_password_page");
       Views.paintPage(forgotPage, loginAnchorPane, 50, 0, 0, 0);
@@ -44,8 +44,7 @@ public class LoginPageController {
     }
   }
 
-  @FXML
-  void handleSignUp(ActionEvent event) {
+  @FXML void handleSignUp(ActionEvent event) {
     try {
       AnchorPane signUpPane = (AnchorPane) Views.loadFXML("/views/signup_page");
       Views.paintPage(signUpPane, loginAnchorPane, 0, 0, 0, 0);
@@ -54,8 +53,7 @@ public class LoginPageController {
     }
   }
 
-  @FXML
-  void handleSubmit(ActionEvent event) {
+  @FXML void handleSubmit(ActionEvent event) {
     // Read the user input
     String id = idNumber.getText();
     String pw = password.getText();
@@ -78,7 +76,7 @@ public class LoginPageController {
 
     // After validation send the request
     Login model = new Login();
-    model.setIdNumber(id);
+    model.setIdNumber(id.toUpperCase());
     model.setPassword(pw);
 
     Request request = new Request();
@@ -104,7 +102,7 @@ public class LoginPageController {
       var auth = res.headers().firstValue("Authorization");
       // We will save the session: everytime the client sends the request this result
       // will be attached for the authentication
-      File authFile = new File("aastu_scms/src/main/resources/auth.bat");
+      File authFile = new File("src/main/resources/auth.bat");
       if (!authFile.exists()) {
         try {
           authFile.createNewFile();
@@ -129,9 +127,24 @@ public class LoginPageController {
     // Request was succesfull. We can proceed to the main functionalities
     try {
       AnchorPane mainPage = (AnchorPane) Views.loadFXML("/views/main_page");
+      AnchorPane homePic = (AnchorPane) Views.loadFXML("/views/home");
+      AnchorPane lap = getLeftAnchorPane(mainPage);
+      Views.paintPage(homePic, lap, 0, 0, 0, 0);
       Views.paintPage(mainPage, loginAnchorPane, 0, 0, 0, 0);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  private AnchorPane getLeftAnchorPane(AnchorPane ap) {
+    SplitPane pane = (SplitPane) ap.getChildren()
+        .filtered(node -> node.getId() != null && node.getId().equals("splitPane")).get(0);
+    AnchorPane lap = (AnchorPane) pane.getItems()
+        .filtered(node -> node.getId() != null && node.getId().equals("leftAnchorPane")).get(0);
+    return lap;
+  }
+
+
+  public static void main(String[] args) {
   }
 }

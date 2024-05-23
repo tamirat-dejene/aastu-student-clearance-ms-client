@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="574.0" styleClass="home-pane" stylesheets="@../styles/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="27.0" layoutY="43.0" prefHeight="59.0" prefWidth="546.0" styleClass="home-h1" text="Addis Ababa Science and Technology University" />
+      <Label layoutX="96.0" layoutY="102.0" prefHeight="46.0" prefWidth="407.0" styleClass="home-h2" text="Student Clearance Management System" />
+      <Label layoutX="135.0" layoutY="195.0" prefHeight="18.0" prefWidth="367.0" styleClass="home-list" text="1. Use menu above to navigate through the app" />
+      <Label layoutX="172.0" layoutY="301.0" prefHeight="34.0" prefWidth="256.0" styleClass="home-footer" text="Advanced Programming Project" />
+   </children>
+</AnchorPane>

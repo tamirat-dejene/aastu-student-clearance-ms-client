@@ -7,10 +7,10 @@
 
 <AnchorPane fx:id="otpAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="453.0" styleClass="reset-pwd-page" stylesheets="@../../styles/forgotpwd.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.ResetPasswordController">
    <children>
-      <Label layoutX="63.0" layoutY="93.0" prefHeight="31.0" prefWidth="333.0" styleClass="otp-label" text="Enter the OTP we sent to your email" />
-      <TextField fx:id="otpTextField" layoutX="63.0" layoutY="132.0" prefHeight="26.0" prefWidth="255.0" styleClass="otp-input-field" />
-      <Button fx:id="confirmOtpBtn" layoutX="336.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleConfrimOtp" styleClass="confirm-reset-btn" text="Confirm" />
-      <Button layoutX="64.0" layoutY="165.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="74.0" styleClass="back-home-btn" text="Cancel" />
-      <Label layoutX="63.0" layoutY="38.0" prefHeight="42.0" prefWidth="334.0" styleClass="reset-pw-head" text="Reset Password" />
+      <Label layoutX="62.0" layoutY="56.0" prefHeight="31.0" prefWidth="333.0" styleClass="otp-label" text="Enter the OTP we sent to your email" />
+      <TextField fx:id="otpTextField" layoutX="62.0" layoutY="94.0" prefHeight="26.0" prefWidth="255.0" styleClass="reset-pw-textfield" />
+      <Button fx:id="confirmOtpBtn" layoutX="336.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleConfrimOtp" styleClass="confirm-reset-btn" text="Confirm" />
+      <Button layoutX="63.0" layoutY="135.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="26.0" prefWidth="68.0" styleClass="back-home-btn" text="Cancel" />
+      <Label layoutX="62.0" layoutY="14.0" prefHeight="42.0" prefWidth="334.0" styleClass="reset-pw-head" text="Reset Password" />
    </children>
 </AnchorPane>

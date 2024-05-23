@@ -40,7 +40,7 @@ public class ReqRes {
   public static String getAuthenticationString() throws IOException {
     // InputStream input = ClassLoader.getSystemResourceAsStream("auth.bat");
     // return new String(input.readAllBytes());
-    File file = new File("aastu_scms/src/main/resources/auth.bat");
+    File file = new File("src/main/resources/auth.bat");
     return ReqRes.getAuthenticationString(file);
   }
 

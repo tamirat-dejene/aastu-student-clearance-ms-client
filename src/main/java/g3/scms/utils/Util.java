@@ -2,12 +2,15 @@ package g3.scms.utils;
 
 import org.apache.commons.codec.binary.Hex;
 
+import g3.scms.model.Notification;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Properties;
 
@@ -66,5 +69,22 @@ public class Util {
       System.out.println(e.getMessage());
       return null;
     }
+  }
+
+
+  @SuppressWarnings("deprecation")
+  public static void main(String[] args) {
+    Arrays.asList(
+      new Notification("Abbb", "Cddd", getDateString(new Date())),
+      new Notification("Bccc", "Cddd", getDateString(new Date())),
+      new Notification("Cddd", "Cddd", getDateString(new Date())),
+      new Notification("Deee", "Cddd", getDateString(new Date(2022, 3, 12, 2, 34, 4)))
+    ).stream().sorted((n1, n2) -> {
+      Date d1 = parseDateString(n1.getDate());
+      Date d2 = parseDateString(n1.getDate());
+      return d1.compareTo(d2);
+    }).forEach(n -> System.out.println(n.getTitle()));
+
+
   }
 }

@@ -2,7 +2,6 @@ package g3.scms.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 
 import g3.scms.api.Api;
 import g3.scms.model.Notification;
@@ -11,6 +10,7 @@ import g3.scms.utils.ReqRes;
 import g3.scms.utils.Util;
 import g3.scms.utils.Views;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
@@ -27,24 +27,32 @@ public class MainPageController {
   @FXML private AnchorPane rightAnchorPane;
   @FXML private ListView<Notification> listView;
   @FXML private VBox vbox; 
+
   
   @FXML
   void handleHomeBtn(ActionEvent event) {
     leftAnchorPane.getChildren().clear();
     rightAnchorPane.getChildren().clear();
-    splitPane.setDividerPositions(0.65);
+    splitPane.setDividerPositions(0.91);
+    try {
+      AnchorPane homePane = (AnchorPane) Views.loadFXML("/views/home");
+      Views.paintPage(homePane, leftAnchorPane, 0, 0, 0, 0);
+    } catch (IOException e) {}
   }
 
   @FXML
   void handleSubmitApp(ActionEvent event) throws IOException {
     AnchorPane formAnchorPane = (AnchorPane) Views.loadFXML("/views/app/form");
     Views.paintPage(formAnchorPane, leftAnchorPane, 0, 0, 0, 0);
+    splitPane.setDividerPositions(0.65);
+
   }
 
   @FXML
   void handleCheckStatusBtn(ActionEvent event) throws IOException {
     AnchorPane statusAnchorPane = (AnchorPane) Views.loadFXML("/views/app/status_page");
     Views.paintPage(statusAnchorPane, leftAnchorPane, 0, 0, 0, 0);
+    splitPane.setDividerPositions(0.50);
   }
 
 
@@ -53,6 +61,7 @@ public class MainPageController {
   void handleNotificationBtn(ActionEvent event) throws IOException {
     AnchorPane notifyAnchorPane = (AnchorPane) Views.loadFXML("/views/notification/notify_page");
     Views.paintPage(notifyAnchorPane, rightAnchorPane, 0, 0, 0, 0);
+    splitPane.setDividerPositions(0.57);
 
     // Send get request
     Request request = new Request();
@@ -83,34 +92,29 @@ public class MainPageController {
     if (resp == null)
       return;
 
-    Notification[] n = new Notification[1];
-    Notification[] notifications =  (Notification[]) ReqRes.makeModelFromJson(resp.body(), n.getClass());
-    
+    Notification[] notifications =  (Notification[]) ReqRes.makeModelFromJson(resp.body(), Notification[].class);
     vbox = (VBox) notifyAnchorPane.getChildren()
         .filtered(child -> child.getId() != null && child.getId().equals("vbox")).get(0);
-    ListView<Notification> listView = (ListView<Notification>) vbox.getChildren().filtered(node -> node instanceof ListView).get(0);
-    listView.getItems().addAll(notifications);
+    listView = (ListView<Notification>) vbox.getChildren().filtered(node -> node instanceof ListView).get(0);
+    
+    for (int i = notifications.length - 1; i >= 0; --i)
+      listView.getItems().add(notifications[i]);
 
-    listView.getItems().stream().sorted((n1, n2) -> {
-      Date d1 = Util.parseDateString(n1.getDate());
-      Date d2 = Util.parseDateString(n2.getDate());
-      return d1.compareTo(d2);
-    });
-
-    listView.getSelectionModel().selectedItemProperty().addListener((notif, b, c) -> {
-      Views.displayAlert(AlertType.INFORMATION, notif.getValue().getTitle(), notif.getValue().getDate(),
-          notif.getValue().getMessage());
-      try {
-        handleNotificationBtn(event);
-      } catch (IOException e) {
-      }
-    });
+    // listView.setOnMouseClicked(ev -> handleClickListClicked(ev));
+    listView.setOnMouseClicked(this::handleListClicked);
   }
 
+  public void handleListClicked(Event e) {
+    Notification notif = listView.getSelectionModel().getSelectedItem();
+    if(notif == null) return;
+    Views.displayAlert(AlertType.INFORMATION, notif.getTitle(), notif.getDate(),
+        notif.getMessage());
+  }
   @FXML
   void handleChangepassword(ActionEvent event) throws IOException {
     AnchorPane changePwdPane = (AnchorPane) Views.loadFXML("/views/notification/change_pwd_page");
     Views.paintPage(changePwdPane, rightAnchorPane, 0, 0, 0, 0);
+    splitPane.setDividerPositions(0.63);
   }
   
   @FXML
@@ -121,7 +125,7 @@ public class MainPageController {
       return;
 
     // Delete the auth.bat file
-    File file = new File("aastu_scms/src/main/resources/auth.bat");
+    File file = new File("src/main/resources/auth.bat");
     if (file.exists())
       file.delete();
 

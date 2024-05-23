@@ -151,6 +151,8 @@ public class SignupController {
     /// Verify if the provided email exists and belongs to the requesting user
     if(!verifyEmail(_email)) return;
     
+    _id = _id.toUpperCase();
+    _section = _section.toUpperCase();
     // Since now we are past the validation let's begin sending the request.
     // First create the json from the Student object/model
     Student student = new Student(_fname, _mname, _lname, _id, _email, _section, Integer.parseInt(_class_year), College.toEnum(_college),
@@ -206,7 +208,7 @@ public class SignupController {
     Api api = new Api();
     var rr = api.get(req, (error, resp) -> {
       if (error != null) {
-        Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "The thing is", error.getMessage());
+        Views.displayAlert(AlertType.WARNING, "Connection/Server Error", "Server can't  be reached.", error.getMessage());
         return null;
       }
 
@@ -242,11 +244,10 @@ public class SignupController {
       return resp;
     });
 
+    Message m = (Message) ReqRes.makeModelFromJson(response.body(), Message.class);
     if (response.statusCode() == 202)
       return true;
-    if (response.statusCode() == 409)
-      Views.displayAlert(AlertType.WARNING, "Forbidden", "Error validating email", "Incorrect OTP");
-    Views.displayAlert(AlertType.WARNING, "Server Error", "Error validating email", "Try again later");
+    Views.displayAlert(AlertType.WARNING, "Verification failed", "Error validating email", m.getMessage());
     return false;
   }
 }
