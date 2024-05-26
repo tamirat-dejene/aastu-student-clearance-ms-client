@@ -3,10 +3,11 @@ module com.g3 {
   requires java.sql;
   requires org.apache.commons.codec;
   
-  requires com.google.gson;
+  requires transitive com.google.gson;
   requires transitive java.net.http;
   requires transitive javafx.graphics;
   requires transitive javafx.controls;
+  requires javafx.base;
 
   opens g3.scms.api to com.google.gson;
   opens g3.scms.model to com.google.gson;

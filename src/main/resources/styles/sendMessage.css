@@ -1,0 +1,70 @@
+.message-page {
+  -fx-background-color: #f4f4f4;
+  -fx-padding: 20;
+}
+
+.page-head {
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
+}
+
+.receiver-label {
+  -fx-font-size: 16px;
+  -fx-text-fill: #333;
+}
+
+.receiver-menu-btn {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #858585;
+  -fx-border-radius: 4px;
+  -fx-padding: 2;
+  -fx-font-size: 14px;
+}
+
+.receiver-menu-btn .menu-item {
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #333;
+}
+
+.receiver-menu-btn .menu-item:focused,
+.receiver-menu-btn .menu-item:hover {
+  -fx-background-color: #e0e0e0;
+  -fx-text-fill: black;
+}
+
+.message-text-area {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #858585;
+  -fx-border-radius: 4px;
+  -fx-padding: 10;
+  -fx-font-size: 14px;
+}
+
+.send-btn {
+  -fx-background-color: #4CAF50;
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-border-radius: 4px;
+  -fx-padding: 5px;
+  -fx-border-color: transparent;
+  -fx-cursor: hand;
+}
+
+.send-btn:hover {
+  -fx-background-color: #45A049;
+}
+
+.cancel-btn {
+  -fx-background-color: #f44336;
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-border-radius: 4px;
+  -fx-padding: 5px;
+  -fx-border-color: transparent;
+  -fx-cursor: hand;
+}
+
+.cancel-btn:hover {
+  -fx-background-color: #e53935;
+}

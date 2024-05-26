@@ -3,6 +3,8 @@ package g3.scms.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
+import java.util.regex.Pattern;
 // import java.io.InputStream;
 
 import com.google.gson.Gson;
@@ -44,8 +46,14 @@ public class ReqRes {
     return ReqRes.getAuthenticationString(file);
   }
 
+  public static boolean authStringIsAdmin(String token) throws IOException {
+    String payload = new String(Base64.getDecoder().decode(token.split("\\.")[1]));
+    return !Pattern.compile("(ets){1}[0-9]{4}/[0-9]{1,2}", Pattern.CASE_INSENSITIVE).matcher(payload).find();
+  }
+
 
   public static void main(String[] args) throws IOException {
+    System.out.println(authStringIsAdmin(getAuthenticationString()));
     System.out.println(ReqRes.getAuthenticationString());
   }
 }

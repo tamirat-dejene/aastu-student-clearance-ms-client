@@ -8,15 +8,16 @@
 
 <AnchorPane fx:id="loginAnchorPane" prefHeight="411.0" prefWidth="635.0" styleClass="login-page" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.LoginPageController">
    <children>
-      <Label fx:id="login_label" layoutX="175.0" layoutY="44.0" prefHeight="62.0" prefWidth="358.0" styleClass="login-label" text="Login" />
-      <Label fx:id="id_number_label" layoutX="179.0" layoutY="110.0" prefHeight="43.0" prefWidth="235.0" styleClass="id-label" text="Id number" />
-      <Label fx:id="password_label" layoutX="179.0" layoutY="182.0" prefHeight="38.0" prefWidth="235.0" styleClass="password-label" text="Password" />
-      <TextField fx:id="idNumber" alignment="CENTER" layoutX="179.0" layoutY="153.0" prefHeight="30.0" prefWidth="235.0" promptText="ETS----/--" styleClass="id-field" />
-      <PasswordField fx:id="password" alignment="CENTER" layoutX="179.0" layoutY="220.0" prefHeight="30.0" prefWidth="235.0" promptText="*******" styleClass="password-field" />
-      <Button fx:id="submit" layoutX="339.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="31.0" prefWidth="74.0" styleClass="login-btn" text="Submit" />
-      <Button fx:id="signUp" layoutX="203.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="31.0" prefWidth="194.0" styleClass="create-acc-btn" text="Create Student Account" />
-      <Button fx:id="forgotPassword" layoutX="179.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
-      <Label fx:id="idNumberError" layoutX="420.0" layoutY="156.0" prefHeight="23.0" prefWidth="186.0" styleClass="error-label" />
-      <Label fx:id="passwordError" layoutX="417.0" layoutY="223.0" prefHeight="23.0" prefWidth="204.0" styleClass="error-label" />
+      <Label fx:id="login_label" layoutX="179.0" layoutY="24.0" prefHeight="62.0" prefWidth="358.0" styleClass="login-label" text="Login" />
+      <Label fx:id="id_number_label" layoutX="182.0" layoutY="86.0" prefHeight="43.0" prefWidth="235.0" styleClass="id-label" text="Id number" />
+      <Label fx:id="password_label" layoutX="179.0" layoutY="160.0" prefHeight="38.0" prefWidth="235.0" styleClass="password-label" text="Password" />
+      <TextField fx:id="idNumber" alignment="CENTER" layoutX="179.0" layoutY="129.0" prefHeight="30.0" prefWidth="235.0" promptText="ETS----/--" styleClass="id-field" />
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="179.0" layoutY="198.0" prefHeight="30.0" prefWidth="235.0" promptText="*******" styleClass="password-field" />
+      <Button fx:id="submit" layoutX="339.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="31.0" prefWidth="74.0" styleClass="login-btn" text="Submit" />
+      <Button fx:id="signUp" layoutX="203.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="31.0" prefWidth="194.0" styleClass="create-acc-btn" text="Create Student Account" />
+      <Button fx:id="forgotPassword" layoutX="179.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleForgotPassword" prefHeight="30.0" prefWidth="121.0" styleClass="reset-btn" text="Forgot password?" underline="true" />
+      <Label fx:id="idNumberError" layoutX="417.0" layoutY="132.0" prefHeight="23.0" prefWidth="186.0" styleClass="error-label" />
+      <Label fx:id="passwordError" layoutX="420.0" layoutY="201.0" prefHeight="23.0" prefWidth="204.0" styleClass="error-label" />
+      <Button fx:id="signUp1" layoutX="251.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAdminBtn" prefHeight="17.0" prefWidth="91.0" styleClass="admin-btn" text="Admin" />
    </children>
 </AnchorPane>

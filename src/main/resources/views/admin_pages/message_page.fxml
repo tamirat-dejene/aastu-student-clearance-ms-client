@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="600.0" styleClass="message-page" stylesheets="@../../styles/sendMessage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g3.scms.controllers.SendNotifController">
+   <children>
+      <Label layoutX="18.0" layoutY="6.0" prefHeight="35.0" prefWidth="186.0" styleClass="page-head" text="Send message" />
+      <MenuButton fx:id="receiverMenuBtn" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" popupSide="TOP" prefHeight="36.0" prefWidth="180.0" styleClass="receiver-menu-btn" text="Receiver">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#allStudentChoiceListener" text="Broadcast" />
+          <MenuItem mnemonicParsing="false" onAction="#oneStudentChoiceListener" text="ReceiverId">
+               <graphic>
+                  <TextField fx:id="receiverId" promptText="student id" />
+               </graphic>
+            </MenuItem>
+        </items>
+      </MenuButton>
+      <TextArea fx:id="messageTextField" layoutX="204.0" layoutY="6.0" prefHeight="78.0" prefWidth="287.0" promptText="type yourmessage here..." styleClass="message-text-area" />
+      <Button layoutX="500.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleConfirmSendingBtn" prefHeight="26.0" prefWidth="80.0" styleClass="send-btn" text="Send" />
+      <Button layoutX="500.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleCancelSendingBtn" prefHeight="33.0" prefWidth="80.0" styleClass="cancel-btn" text="Cancel" />
+   </children>
+</AnchorPane>

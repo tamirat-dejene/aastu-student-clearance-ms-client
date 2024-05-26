@@ -35,6 +35,15 @@ public class LoginPageController {
   @FXML private Button signUp;
   @FXML private Button submit;
 
+  @FXML void handleAdminBtn(ActionEvent event) {
+    try {
+      AnchorPane adminPageAp = (AnchorPane) Views.loadFXML("/views/admin_pages/admin_login");
+      Views.paintPage(adminPageAp, loginAnchorPane, 0, 0, 0, 0);
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+  
   @FXML void handleForgotPassword(ActionEvent event) {
     try {
       AnchorPane forgotPage = (AnchorPane) Views.loadFXML("/views/otp/forgot_password_page");
@@ -143,7 +152,6 @@ public class LoginPageController {
         .filtered(node -> node.getId() != null && node.getId().equals("leftAnchorPane")).get(0);
     return lap;
   }
-
 
   public static void main(String[] args) {
   }

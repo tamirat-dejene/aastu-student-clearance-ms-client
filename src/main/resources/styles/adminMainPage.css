@@ -1,0 +1,96 @@
+.admin-main-page {
+  -fx-background-color: #f4f4f4;
+  -fx-padding: 20;
+}
+
+.main-page-header {
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
+}
+
+.clearance-app-table {
+  -fx-border-color: #858585;
+  -fx-padding: 10;
+}
+
+.clearance-app-table .cell:selected {
+  -fx-background-color: rgb(63, 182, 246);
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.clearance-app-table .column-header {
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
+  -fx-border-color: #858585;
+  -fx-border-width: 0 0 1 0;
+}
+
+.clearance-app-table .column-header .label {
+  -fx-border-color: #858585;
+  -fx-border-width: 0 1 0 0;
+}
+
+.clearance-app-table .cell {
+  -fx-border-width: 0 1 1 0;
+}
+
+.clearance-app-table .appId-col {
+  -fx-alignment: CENTER;
+}
+
+.clearance-app-table .stud-id-col {
+  -fx-alignment: CENTER;
+}
+
+.clearance-app-table .reasonCol {
+  -fx-alignment: CENTER-LEFT;
+}
+
+.clearance-app-table .status-col {
+  -fx-alignment: CENTER;
+}
+
+.clearance-app-table .date-col {
+  -fx-alignment: CENTER;
+}
+
+.notify-student-btn {
+  -fx-background-color: #4CAF50;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
+
+.update-app-label {
+  -fx-font-size: 16px;
+  -fx-text-fill: #333;
+}
+
+.menu-btn {
+  -fx-background-color: #2196F3;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
+
+
+
+.confirm-btn {
+  -fx-background-color: #FF5722;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
+
+
+.log-out-btn {
+  -fx-background-color: #f5b92c;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+}
