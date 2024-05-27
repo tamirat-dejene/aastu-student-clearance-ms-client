@@ -80,7 +80,7 @@ public class App extends Application {
 
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		// stage.setResizable(false);
+		stage.setResizable(false);
 		stage.setTitle("Student Clearance");
 		stage.getIcons().add(new Image(App.class.getResource("/image/aastu-logo.jpg").toString()));
 

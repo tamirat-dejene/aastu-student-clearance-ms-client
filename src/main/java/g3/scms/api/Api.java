@@ -17,6 +17,15 @@ import g3.scms.utils.Util;
 
 public class Api {
   private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(5);
+  private HttpClient client;
+
+  public Api() {
+    this(HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build());
+  }
+
+  public Api(HttpClient client) {
+    this.client = client;
+  }
 
   /**
    * Sends a POST request using the given request and callback.
@@ -26,7 +35,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> post(Request request, Callback cb) {
-    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
+    // HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -55,7 +64,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> get(Request request, Callback cb) {
-    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
+    // HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -85,7 +94,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> put(Request request, Callback cb) {
-    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
+    // HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
@@ -115,7 +124,7 @@ public class Api {
    * @return the result of the callback processing
    */
   public HttpResponse<String> delete(Request request, Callback cb) {
-    HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
+    // HttpClient client = HttpClient.newBuilder().connectTimeout(REQUEST_TIMEOUT).build();
     HttpResponse<String> response = null;
     Error error = null;
 
